@@ -1,9 +1,9 @@
-import requests
 import re
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import json
+from multiprocessing import Process, Pool
 
 
 def get_articles():
@@ -32,18 +32,18 @@ def get_articles():
     driver.quit()
     return set_to_link
 
-def get_pullrates(source):
+def get_pullrates(args):
+    setName, source = args
     op = Options()
     op.add_argument('--headless')  # Run in headless mode
     op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
     driver = webdriver.Chrome(options=op)
     driver.implicitly_wait(5)
-
     driver.get(source)
     content_container = driver.find_element(By.TAG_NAME, "table")
     row_container = content_container.find_element(By.TAG_NAME, "tbody")
-    rows = row_container.find_elements(By.TAG_NAME, "tr")
-
+    rows = row_container.find_elements(By.XPATH, ".//tr[not(.//td[1]/strong)]")
+    data = []
     # Iterate through each row to get the cells (td elements)
     for row in rows:
         # Get all cells (td elements) in the row
@@ -54,22 +54,42 @@ def get_pullrates(source):
         match = re.search(r"(\d+\.?\d*)(?=%)",chance)
         if match:
             percent=match.group()
-            print(rarity)
-            print(percent +" Pull rate")
+            data.append([rarity,percent])
         
     #print("done")
     driver.quit()
 
-    return 
+    return (setName,data) 
+if __name__ == "__main__":
+    dataToParse = get_articles()
+    processes = []
+    with Pool(processes=len(dataToParse)) as pool:
+        data = pool.map(get_pullrates, dataToParse)
+    results_dict= {}
+    for set,numbers in data:
+        results_dict[set] = numbers
+    with open("pokedata.json", "w") as json_file:
+        json.dump(results_dict, json_file, indent=4)
 
-dataToParse = get_articles()
+"""
+for data in dataToParse:
+    setName = data[0]
+    url = data[1]
+    process = Process(target=get_pullrates, args=(url,q))
+    process.start()
+    processes.append(process)
+for process in processes:
+    process.join()
 
+"""
+
+"""
 for row in dataToParse:
     setName = row[0]
     link = row[1]
     print(link)
     print(setName)
-    get_pullrates(link)
-"""
+    
+    data.append([setName,get_pullrates(link)])
 """
 
