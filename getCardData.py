@@ -8,7 +8,7 @@ from pokemontcgsdk import Rarity
 
 url = "https://api.pokemontcg.io/v2/cards/"
 headers = {
-    "X-Api-Key": "3ba6f406-4bd1-4b37-ad93-64fef7a956d3"
+    "X-Api-Key": "redacted"
 }
 
 response = requests.get(url, headers=headers)
