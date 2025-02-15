@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull Rates</title>
+</head>
+<body>
+    <h1>Pokemon Pull Rates</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // Fetch the JSON data
+        fetch('pokedata.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('data-container');
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<p>Set: ${item.set}, Rarity: ${item.rarity}, Percentage: ${item.percentage}</p>`;
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>
