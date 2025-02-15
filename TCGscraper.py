@@ -54,7 +54,7 @@ def get_pullrates(args):
         match = re.search(r"(\d+\.?\d*)(?=%)",chance)
         if match:
             percent=match.group()
-            data.append([rarity,percent])
+            data.append({'Rarity':rarity,'Chances':percent})
         
     #print("done")
     driver.quit()
