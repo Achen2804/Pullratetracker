@@ -1,2 +1,3 @@
 Flask
-gunicorn  # Required for production
+gunicorn
+flask_cors 
