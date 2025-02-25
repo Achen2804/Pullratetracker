@@ -73,8 +73,8 @@
     <div class="dropdown-content" id="Set-List">
     </div>
   </div>
-  <button onclick= "testApp()"> Testing</button>
   <div id="data-container"></div>
+  <button onclick= "testApp()"> Testing</button>
 
   <script>
     fetch('pokedata.json')
@@ -116,8 +116,8 @@
             const rarityData = document.createElement('p')
             rarityData.innerHTML = `<Strong>${rarity}: </Strong> 1 in ${((1/rate)*100).toFixed(2)} packs`
           setData.appendChild(rarityData)
-          container.appendChild(setData)}
-            );
+          container.appendChild(setData)
+        });
               }
             })
       .catch(error => console.error('Error loading JSON:', error)); 
