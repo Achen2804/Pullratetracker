@@ -2,9 +2,9 @@ module.exports = async (req, res) => {
     const time = new Date().getDay();
     let targetUrl = ""; 
     if(time <15){
-        targetUrl = "https://pullratetracker.onrender.com/";
+        targetUrl = "https://pullratetracker.onrender.com/api/data";
     }else{
-        targetUrl = "https://pullratetracker-1.onrender.com"
+        targetUrl = "https://pullratetracker-1.onrender.com/api/data"
     }
   
 
