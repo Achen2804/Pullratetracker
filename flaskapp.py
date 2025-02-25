@@ -14,7 +14,7 @@ CORS(app)  # Allow frontend access
 
 @app.route('/')
 def home():
-    return "Hello fuckers"
+    return "Hello Folks"
 
 @app.route('/api/data')
 def get_data():
@@ -26,7 +26,7 @@ def get_data():
     response = requests.get(url, headers=headers)
     data = response.json()
     card = Card.find('sv8pt5-16')
-    return jsonify({card})
+    return jsonify(card)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
