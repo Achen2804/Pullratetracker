@@ -73,6 +73,7 @@
     <div class="dropdown-content" id="Set-List">
     </div>
   </div>
+  <button onclick= "testApp()"> Testing</button>
   <div id="data-container"></div>
 
   <script>
@@ -91,6 +92,14 @@
         }
 
       })
+      function testApp(){
+      fetch('https://pullratetracker.onrender.com/api/data')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Data received from Flask app:', data);
+      })
+      .catch(error => console.error('Error:', error));
+    }
     function getData(setName) {
       fetch('pokedata.json')
       .then(response => response.json())  
