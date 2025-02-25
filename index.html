@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Pull Rates</title>
+  <style>
+    body {
+      color: #325050;
+      background: #fff;
+      font-family: 'Libre Baskerville', sans-serif;
+      font-size: 70%;
+    }
+    a {
+      color: #0d8ba1;
+      text-decoration: none;
+    }
+    .dropbtn {
+      background-color: #04AA6E;
+      color: black;
+      padding: 40px 50px;
+      font-size: 46px;
+      border: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 1080px;
+      max-height: 600px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      overflow-y: auto;
+      display: none;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 10px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .setRateDrop:hover .dropdown-content {
+      display: grid;
+    }
+
+    .setRateDrop:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+
+    #Tool-Drop-Button {
+      display: flex;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align:center">Pokémon Pull Rates</h1>
+  <div class="setRateDrop" id="Tool-Drop-Button">
+    <button class="dropbtn">Set List</button>
+    <div class="dropdown-content" id="Set-List">
+    </div>
+  </div>
+  <div id="data-container"></div>
+
+  <script>
+    fetch('pokedata.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('Set-List');
+        for (const [setName, details] of Object.entries(data)) {
+          const listItem = document.createElement('a');
+          listItem.href = '#';
+          listItem.textContent = setName;
+          listItem.textSize = "50px";
+          listItem.onclick = function() { getData(setName); };
+          container.appendChild(listItem);
+          
+        }
+
+      })
+    function getData(setName) {
+      fetch('pokedata.json')
+      .then(response => response.json())  
+      .then(data => {
+        const container = document.getElementById('data-container');
+        container.innerHTML = ''
+        const SetTitle = document.createElement('h2');
+        SetTitle.textContent = setName;
+        container.appendChild(SetTitle);
+        if(data[setName]){
+          const Rarities = data[setName]
+          Rarities.forEach(([rarity, rate]) =>{
+            const setData = document.createElement('div')
+            const rarityData = document.createElement('p')
+            rarityData.innerHTML = `<Strong>${rarity}: </Strong> 1 in ${((1/rate)*100).toFixed(2)} packs`
+          setData.appendChild(rarityData)
+          container.appendChild(setData)}
+            );
+              }
+            })
+      .catch(error => console.error('Error loading JSON:', error)); 
+    }
+    
+    
+    
+
+  </script>
+</body>
+
+</html>
