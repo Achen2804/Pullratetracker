@@ -14,5 +14,6 @@ headers = {
 response = requests.get(url, headers=headers)
 data = response.json()
 card = Card.find('sv8pt5-16')
+print(data)
 # Process the data
-print(card)
+#print(card)

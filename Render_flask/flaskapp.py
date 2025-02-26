@@ -18,6 +18,9 @@ def home():
 
 @app.route('/api/data')
 def get_data():
+    return jsonify({'message':'hello'})
+@app.route('/api/getcard')
+def get_data():
     url = "https://api.pokemontcg.io/v2/cards/"
     headers = {
         "X-Api-Key": "3ba6f406-4bd1-4b37-ad93-64fef7a956d3"
@@ -27,6 +30,5 @@ def get_data():
     data = response.json()
     card = Card.find('sv8pt5-16')
     return jsonify(card)
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
