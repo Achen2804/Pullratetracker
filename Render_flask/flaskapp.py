@@ -17,8 +17,9 @@ def home():
     return "Hello Folks"
 
 @app.route('/api/data')
-def get_data():
+def send_message():
     return jsonify({'message':'hello'})
+
 @app.route('/api/getcard')
 def get_data():
     url = "https://api.pokemontcg.io/v2/cards/"
