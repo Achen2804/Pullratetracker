@@ -10,7 +10,7 @@ from pokemontcgsdk import Rarity
 
 
 app = Flask(__name__)
-CORS(app, origins=["https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api"])
+CORS(app, origins=["https://pullratetracker.vercel.app"])
 @app.route('/')
 def home():
     return "Hello Folks"
