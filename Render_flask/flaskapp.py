@@ -10,8 +10,7 @@ from pokemontcgsdk import Rarity
 
 
 app = Flask(__name__)
-CORS(app)  # Allow frontend access
-
+CORS(app, origins=["https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app"])
 @app.route('/')
 def home():
     return "Hello Folks"

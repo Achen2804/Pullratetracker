@@ -93,8 +93,7 @@
 
       })
       function testApp(){
-      fetch(' https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api',{ method: 'GET', // or POST/PUT, depending on your needs
-      mode: 'no-cors'})
+      fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api',{ method: 'GET',})
       .then(response => response.json())
       .then(data => {
         console.log('Data received from Flask app:', data);
