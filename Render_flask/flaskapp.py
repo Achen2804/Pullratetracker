@@ -19,6 +19,7 @@ def home():
 def send_message():
     message = jsonify({'message':'hello'})
     message.headers.add('Access-Control-Allow-Origin','*')
+    return message
 
 @app.route('/api/getcard')
 def get_data():
