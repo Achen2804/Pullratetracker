@@ -10,7 +10,7 @@ from pokemontcgsdk import Rarity
 
 
 app = Flask(__name__)
-CORS(app, origins=["https://pullratetracker.vercel.app"])
+CORS(app)
 @app.route('/')
 def home():
     return "Hello Folks"
@@ -18,7 +18,7 @@ def home():
 @app.route('/api/data')
 def send_message():
     message = jsonify({'message':'hello'})
-    message.headers.add('Access-Control-Allow-Origin','*')
+    message.headers.add('Access-Control-Allow-Origin', '*')
     return message
 
 @app.route('/api/getcard')
