@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
       body: req.method === 'POST' || req.method === 'PUT' ? req.body : undefined, 
     });
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if(req.method ==='GET'){
+    if(req.method == 'GET'){
     const data = await response.json(); 
     res.status(response.status).json(data); 
     }else{
