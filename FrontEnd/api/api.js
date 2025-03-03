@@ -15,8 +15,12 @@ module.exports = async (req, res) => {
       body: req.method === 'POST' || req.method === 'PUT' ? req.body : undefined, 
     });
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const data = await response.json(); // Assuming the response is JSON
-    res.status(response.status).json(data); // Send the response back to the client
+    if(req.method ==='GET'){
+    const data = await response.json(); 
+    res.status(response.status).json(data); 
+    }else{
+      res.status(response.status).end();
+    }
   } catch (error) {
     console.error('Error forwarding request:', error);
     res.status(500).json({ error: 'Failed to forward request' });
