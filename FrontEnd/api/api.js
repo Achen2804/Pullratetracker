@@ -15,10 +15,12 @@ module.exports = async (req, res) => {
       body: req.method === 'POST' || req.method === 'PUT' ? req.body : undefined, 
     });
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if(req.method == 'GET'){
+    if(req.method === 'GET'){
     const data = await response.json(); 
     res.status(response.status).json(data); 
-    }else{
+    }else if (req.method === 'HEAD') {
+      res.status(response.status).set(response.headers).end();
+    } else {
       res.status(response.status).end();
     }
   } catch (error) {
