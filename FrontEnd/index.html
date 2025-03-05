@@ -25,11 +25,11 @@
     }
 
     .dropdown-content {
-      display: none;
       position: absolute;
       background-color: #f1f1f1;
-      min-width: 1080px;
-      max-height: 600px;
+      min-width: 100%;
+      max-width: 100%;
+      max-height: none;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
       overflow-y: auto;
@@ -49,6 +49,9 @@
       background-color: #ddd;
     }
 
+    .setRateDrop {
+      position: relative;  /* Ensure dropdown is positioned within this container */
+    }
     .setRateDrop:hover .dropdown-content {
       display: grid;
     }
@@ -56,12 +59,43 @@
     .setRateDrop:hover .dropbtn {
       background-color: #3e8e41;
     }
-
     #Tool-Drop-Button {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       width: fit-content;
-      margin: 0 auto
+      margin: 0 auto;
+      position: relative; 
+      min-width: 80%;
+      max-width: 90%;
+    }
+
+    #data-container {
+      margin-top: 10%; 
+      padding: 10px;
+      width: 80%; 
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  
+    @media (max-width: 768px) {
+      /* Show the dropdown on click */
+      .dropdown-content {
+        box-sizing: border-box;
+        position: relative;
+        min-width: 80%;
+        max-width: 100%;
+      }
+
+      /* Add toggle function for mobile view */
+      .dropdown-content.show {
+        display: block;
+      }
+      .setRateDrop .dropbtn {
+        width: 100%; /* Ensure button takes full width */
+      }
     }
   </style>
 </head>
@@ -88,9 +122,7 @@
           listItem.textSize = "50px";
           listItem.onclick = function() { getData(setName); };
           container.appendChild(listItem);
-          
         }
-
       })
       function testApp(){
       fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api',{ method: 'GET',})
@@ -111,13 +143,53 @@
         container.appendChild(SetTitle);
         if(data[setName]){
           const Rarities = data[setName]
-          Rarities.forEach(([rarity, rate]) =>{
+          for(const RarityTuple of Rarities){
+            const subRarity = RarityTuple.Subrarities
+
+            const menuItem = document.createElement('button')
             const setData = document.createElement('div')
             const rarityData = document.createElement('p')
-            rarityData.innerHTML = `<Strong>${rarity}: </Strong> 1 in ${((1/rate)*100).toFixed(2)} packs`
-          setData.appendChild(rarityData)
+            menuItem.innerHTML=innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`
+            menuItem.style.padding = "5px"
+            menuItem.style.cursor = "pointer";
+            menuItem.style.backgroundColor = "#4CAF50";
+            menuItem.style.color = "white";
+            menuItem.style.border = "none";
+            menuItem.style.borderRadius = "4px";
+            menuItem.style.minWidth = "40%"
+            if(subRarity.length){
+              menuItem.onmouseover = () => button.style.backgroundColor = "#45a049";
+              menuItem.onmouseout = () => button.style.backgroundColor = "#4CAF50";
+            }
+            setData.appendChild(menuItem);
+
+            const content = document.createElement('div');
+            content.style.display = 'none'; 
+            content.style.paddingLeft = '20px';
+            content.style.marginTop = '10px';
+            content.style.backgroundColor = "#f1f1f1";
+
+            if(subRarity.length){
+              for(const SubRarityTuple of subRarity){
+              const subrarityData = document.createElement('p')
+              subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`
+              content.appendChild(subrarityData)
+              }
+              setData.appendChild(content);
+            }
+            
+
+            // Add event listener for toggling visibility
+            menuItem.addEventListener('click', () => {
+                    // Toggle visibility of content
+                    if (content.style.display === "none") {
+                        content.style.display = "block";
+                    } else {
+                        content.style.display = "none";
+                    }
+                });
           container.appendChild(setData)
-        });
+        };
               }
             })
       .catch(error => console.error('Error loading JSON:', error)); 
