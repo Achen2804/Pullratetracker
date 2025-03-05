@@ -19,7 +19,8 @@ module.exports = async (req, res) => {
     const data = await response.json(); 
     res.status(response.status).json(data); 
     }else if (req.method === 'HEAD') {
-      res.status(response.status).set(response.headers).end();
+      res.setHeader('Vercel-Server', ''); 
+      res.status(200).end();
     } else {
       res.status(response.status).end();
     }
