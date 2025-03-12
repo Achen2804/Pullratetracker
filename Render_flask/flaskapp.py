@@ -39,6 +39,8 @@ def get_set():
     if 'Gallery' in rarity:
         set_name = set_name+' '+rarity
         cards = Card.where(q=f'(set.name:"{set_name}")')
+    elif 'Ultra Rare' in rarity:
+        cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"Rare Ultra" OR rarity:"Ultra Rare")')
     else:
         cards = Card.where(q=f'(set.name:"{set_name}") rarity:"{rarity}"')
     card_ids = []

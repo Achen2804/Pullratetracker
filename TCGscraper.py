@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import json
-from multiprocessing import Process, Pool
+from multiprocessing import Pool
 
 
 def get_articles():
@@ -36,42 +36,63 @@ def get_pullrates(args):
     setName, source = args
     op = Options()
     op.add_argument('--headless')  # Run in headless mode
-    op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
+    op.add_argument('--disable-gpu')  
     driver = webdriver.Chrome(options=op)
     driver.implicitly_wait(5)
     driver.get(source)
-    content_container = driver.find_element(By.TAG_NAME, "table")
-    row_container = content_container.find_element(By.TAG_NAME, "tbody")
-    rows = row_container.find_elements(By.XPATH, ".//tr[not(.//td[1]/strong)]")
+    content_container = driver.find_element(By.XPATH, "//table[.//th[contains(text(), 'Rarity') or contains(text(), 'Card Type') or contains(text(), 'Subrarity')]]")
+    table_body = content_container.find_element(By.TAG_NAME,"tbody")
+    rows = table_body.find_elements(By.TAG_NAME, "tr")
     data = []
+    supertype = None
+    subtype = None
     # Iterate through each row to get the cells (td elements)
+    print(len(rows))
     for row in rows:
         # Get all cells (td elements) in the row
         cells = row.find_elements(By.TAG_NAME, "td")
+        if len(cells) < 3:
+            continue
+
+        Rarity_cell = cells[0]
+        bolding = bool(Rarity_cell.find_elements(By.TAG_NAME, "strong"))
+
         # Extract text from each cell and print it
-        rarity = cells[0].text
+        rarity = Rarity_cell.text
         chance = cells[1].text
         match = re.search(r"(\d+\.?\d*)(?=%)",chance)
         if match:
             percent=match.group()
-            data.append({'Rarity':rarity,'Chances':percent})
+            if (bolding):
+                supertype = rarity
+                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[]})
+            elif(supertype):
+                data[-1]['Subrarities'].append({'Rarity':rarity,'Chances':percent}) 
+            else:
+                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[]})
         
-    #print("done")
+        
+        #print(data)
     driver.quit()
-
+    #print(data)
     return (setName,data) 
 if __name__ == "__main__":
     dataToParse = get_articles()
     processes = []
+    get_pullrates(dataToParse[0])
+
+
     with Pool(processes=len(dataToParse)) as pool:
         data = pool.map(get_pullrates, dataToParse)
     results_dict= {}
+    print(data)
     for set,numbers in data:
         results_dict[set] = numbers
-    with open("pokedata.json", "w") as json_file:
+    with open("./FrontEnd/pokedata.json", "w") as json_file:
         json.dump(results_dict, json_file, indent=4)
+    """
+    
 
-"""
 for data in dataToParse:
     setName = data[0]
     url = data[1]

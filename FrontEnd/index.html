@@ -27,17 +27,19 @@
     .dropdown-content {
       position: absolute;
       background-color: #f1f1f1;
-      min-width: 100%;
+      min-width: 80%;
       max-width: 100%;
       max-height: none;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
       overflow-y: auto;
       display: none;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       padding: 10px;
     }
-
+    @media (min-width: 900px) {
+      .dropdown-grid { grid-template-columns: repeat(5, 1fr); }
+    }
     .dropdown-content a {
       color: black;
       padding: 12px 16px;
@@ -66,7 +68,7 @@
       width: fit-content;
       margin: 0 auto;
       position: relative; 
-      min-width: 80%;
+      min-width: 50%;
       max-width: 90%;
     }
 
@@ -81,7 +83,6 @@
     }
   
     @media (max-width: 768px) {
-      /* Show the dropdown on click */
       .dropdown-content {
         box-sizing: border-box;
         position: relative;
@@ -89,12 +90,11 @@
         max-width: 100%;
       }
 
-      /* Add toggle function for mobile view */
       .dropdown-content.show {
         display: block;
       }
       .setRateDrop .dropbtn {
-        width: 100%; /* Ensure button takes full width */
+        width: 100%; 
       }
     }
   </style>
@@ -111,6 +111,10 @@
   <button onclick= "testApp()"> Testing</button>
 
   <script>
+  fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api', {method: 'HEAD'})
+  .then(response => {
+    console.log('Response Headers:', response.headers);}).catch(error => console.error('Error:', error))
+
     fetch('pokedata.json')
       .then(response => response.json())
       .then(data => {
@@ -132,6 +136,25 @@
       })
       .catch(error => console.error('Error:', error));
     }
+    function getRarityGallery(set_name,rarity){
+      const API = `https://pullratetracker.onrender.com/api/getset?set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
+      console.log(API);
+      fetch(API, {method: 'GET',})
+      .then(response => response.json())
+      .then(data => {
+        console.log('Data received from Flask app:', data);
+        const images = document.createElement('div');
+        images.style.display = 'flex';
+        for(const URL of data){
+          const img = document.createElement('img');
+          img.src = URL;
+          img.style.width = "100%";
+          img.style.height = "auto";
+          images.appendChild(img);
+        }
+        return images;
+      })
+    }
     function getData(setName) {
       fetch('pokedata.json')
       .then(response => response.json())  
@@ -146,49 +169,59 @@
           for(const RarityTuple of Rarities){
             const subRarity = RarityTuple.Subrarities
 
+            //If there are subrarities, create a button that will display the subrarities when clicked. 
+            //MenuItem is the button, set data is the div that contains the button and the subrarities
+            //Content is the div that contains the subrarities
+
             const menuItem = document.createElement('button')
             const setData = document.createElement('div')
             const rarityData = document.createElement('p')
-            menuItem.innerHTML=innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`
-            menuItem.style.padding = "5px"
+            menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`
+            menuItem.style.padding = "5px";
             menuItem.style.cursor = "pointer";
             menuItem.style.backgroundColor = "#4CAF50";
             menuItem.style.color = "white";
             menuItem.style.border = "none";
             menuItem.style.borderRadius = "4px";
-            menuItem.style.minWidth = "40%"
-            if(subRarity.length){
-              menuItem.onmouseover = () => button.style.backgroundColor = "#45a049";
-              menuItem.onmouseout = () => button.style.backgroundColor = "#4CAF50";
-            }
-            setData.appendChild(menuItem);
+            menuItem.style.minWidth = "40%";
+            menuItem.style.width="100%";
+            menuItem.setAttribute('set_name', setName);
+            menuItem.setAttribute('rarity', RarityTuple.Rarity);
+
 
             const content = document.createElement('div');
             content.style.display = 'none'; 
             content.style.paddingLeft = '20px';
             content.style.marginTop = '10px';
             content.style.backgroundColor = "#f1f1f1";
-
-            if(subRarity.length){
-              for(const SubRarityTuple of subRarity){
-              const subrarityData = document.createElement('p')
-              subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`
-              content.appendChild(subrarityData)
-              }
-              setData.appendChild(content);
+            for(const SubRarityTuple of subRarity){
+            const subrarityData = document.createElement('p')
+            subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`
+            content.appendChild(subrarityData)
             }
             
 
             // Add event listener for toggling visibility
             menuItem.addEventListener('click', () => {
                     // Toggle visibility of content
-                    if (content.style.display === "none") {
-                        content.style.display = "block";
-                    } else {
-                        content.style.display = "none";
-                    }
+                    content.style.display = content.style.display === "none" ? "block" : "none"
+                    const set = menuItem.getAttribute('set_name');
+                    const rarity = menuItem.getAttribute('rarity');
+                    const rarity_gallery = getRarityGallery(set, rarity);
+                    content.appendChild(rarity_gallery);
                 });
-          container.appendChild(setData)
+
+                //Putting the parts together. SetData contains the button and the content div.
+                //Content div contains the subrarities and relevant data
+                //MenuItem is the button that will toggle the visibility of the content div and show the rarity of the type. 
+              menuItem.onmouseover = () => menuItem.style.backgroundColor = "#45a049";
+              menuItem.onmouseout = () => menuItem.style.backgroundColor = "#4CAF50";
+              setData.appendChild(menuItem);
+              setData.appendChild(content);
+
+              
+              container.appendChild(setData)
+            
         };
               }
             })
