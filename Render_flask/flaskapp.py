@@ -30,15 +30,19 @@ def get_data():
 @app.route('/api/getset')
 def get_set():
     set_name = request.args.get('set_name','None',type=str)
+    rarity = request.args.get('rarity','Rare Ultra',type=str)
     print(f"Received set_name: {set_name}")
+    print(f"Received rarity: {rarity}")
     if(set_name == 'None'):
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
-    poke_set = Set.find(set_name)
-    set_json = poke_set.images.logo
-    images = []
-    images.append(set_json)
-    cards = Card.where(q=f'(set.id:{set_name} OR set.id:{set_name}tg) rarity:"Rare Ultra"')
+    cards = []
+    if 'Gallery' in rarity:
+        set_name = set_name+' '+rarity
+        cards = Card.where(q=f'(set.name:"{set_name}")')
+    else:
+        cards = Card.where(q=f'(set.name:"{set_name}") rarity:"{rarity}"')
     card_ids = []
+    images = []
     for card in cards:
         card_ids.append(card.id)
         images.append(card.images.large)
