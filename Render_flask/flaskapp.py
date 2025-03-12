@@ -37,17 +37,21 @@ def get_set():
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
     cards = []
     if 'Gallery' in rarity:
+        print("We have a gallery")
         set_name = set_name+' '+rarity
         cards = Card.where(q=f'(set.name:"{set_name}")')
     elif 'Ultra Rare' in rarity:
+        print("We have an ultra rare or rare ultra")
         cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"Rare Ultra" OR rarity:"Ultra Rare")')
     else:
+        print("We have a normal rarity")
         cards = Card.where(q=f'(set.name:"{set_name}") rarity:"{rarity}"')
     card_ids = []
     images = []
     for card in cards:
         card_ids.append(card.id)
         images.append(card.images.large)
+    print(card_ids)
     return jsonify(images)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
