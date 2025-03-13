@@ -39,7 +39,8 @@ def get_set():
     if 'Gallery' in rarity:
         print("We have a gallery")
         set_name = set_name+' '+rarity
-        cards = Card.where(q=f'(set.name:"{set_name}")')
+        print(set_name)
+        cards = Card.where(q=f'set.name:"{set_name}"')
     elif 'Ultra Rare' in rarity:
         print("We have an ultra rare or rare ultra")
         cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"Rare Ultra" OR rarity:"Ultra Rare")')
