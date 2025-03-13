@@ -3,11 +3,8 @@ from flask_cors import CORS
 import requests
 from pokemontcgsdk import Card
 from pokemontcgsdk import Set
-from pokemontcgsdk import Type
-from pokemontcgsdk import Supertype
-from pokemontcgsdk import Subtype
-from pokemontcgsdk import Rarity
 from pokemontcgsdk import RestClient
+import re
 
 RestClient.configure('3ba6f406-4bd1-4b37-ad93-64fef7a956d3')
 
@@ -36,17 +33,22 @@ def get_set():
     if(set_name == 'None'):
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
     cards = []
+    match = re.match(r"(\w+)\sRare", rarity)
     if 'Gallery' in rarity:
         print("We have a gallery")
         set_name = set_name+' '+rarity
         print(set_name)
         cards = Card.where(q=f'set.name:"{set_name}"')
-    elif 'Ultra Rare' in rarity:
-        print("We have an ultra rare or rare ultra")
-        cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"Rare Ultra" OR rarity:"Ultra Rare")')
+    elif match:
+        print("We might have to swap our wording around")
+        print(rarity)
+        word = match.group(1)  
+        reverse = f"Rare {word}"
+        print(reverse)
+        cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"{rarity}" OR rarity:"{reverse}")')
     else:
         print("We have a normal rarity")
-        cards = Card.where(q=f'(set.name:"{set_name}") rarity:"{rarity}"')
+        cards = Card.where(q=f'set.name:"{set_name}" rarity:"{rarity}"')
     card_ids = []
     images = []
     for card in cards:
