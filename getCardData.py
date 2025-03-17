@@ -15,17 +15,31 @@ def process_set(set_name):
     set_json = set.images.logo
     images = []
     images.append(set_json)
-    cards = Card.where(q='set.name:"Crown Zenith" rarity:"Ultra Rare"')
+    set_name = 'Crown Zenith'
+    rarity = 'Rare Holo'
+    cards = []
+    if 'Gallery' in rarity:
+        print("We have a gallery")
+        set_name = set_name+' '+rarity
+        print(set_name)
+        cards = Card.where(q=f'set.name:"{set_name}"')
+    elif 'Ultra Rare' in rarity:
+        print("We have an ultra rare or rare ultra")
+        cards = Card.where(q=f'set.name:"{set_name}" rarity:"Ultra Rare"')
+    else:
+        print("We have a normal rarity")
+        cards = Card.where(q=f'set.name:"{set_name}" AND rarity:"{rarity}"')
     card_ids = []
     for card in cards:
         card_ids.append(card.id)
         images.append(card.images.large)
-    print(card_ids)
+    #print(card_ids)
     return images
 
 images = process_set('swsh12')
-#print(Card.find('swsh12pt5gg-GG68'))
+print(Card.find('swsh12pt5-160'))
 #print(Rarity.all())
+#images = Card.where(q=f'set.name:"Crown Zenith" rarity:"Rare Holo"')
 html_content = "<html><body>" + "".join(f'<img src="{url}" style="width:300px;"><br>' for url in images) + "</body></html>"
 
 with open("images.html", "w") as f:

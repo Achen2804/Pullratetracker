@@ -20,10 +20,11 @@ module.exports = async (req, res) => {
     res.status(response.status).json(data); 
     }else if (req.method === 'HEAD') {
       res.setHeader('Vercel-Server', ''); 
-      res.status(200).end();
+      res.status(response.status).end();
     } else {
       res.status(response.status).end();
     }
+    console.log('Request forwarded:', req.method, req.url);
   } catch (error) {
     console.error('Error forwarding request:', error);
     res.status(500).json({ error: 'Failed to forward request' });
