@@ -14,6 +14,11 @@ CORS(app)
 def home():
     return "Hello Folks"
 
+@app.route('/health')
+def send_message():
+    
+    return "Good", 200
+
 @app.route('/api/data')
 def send_message():
     message = jsonify({'message':'hello'})
