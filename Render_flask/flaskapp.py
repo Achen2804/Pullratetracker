@@ -15,7 +15,7 @@ def home():
     return "Hello Folks"
 
 @app.route('/health')
-def send_message():
+def Update_Health():
     
     return "Good", 200
 
