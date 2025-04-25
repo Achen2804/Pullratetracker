@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import json
 from multiprocessing import Pool
-
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 
 def get_articles():
 # Headless mode (optional)
@@ -77,6 +79,11 @@ def get_pullrates(args):
     driver.quit()
     #print(data)
     return (setName,data) 
+
+def upload_image_data(setName):
+    
+    return
+
 if __name__ == "__main__":
     dataCollected = get_articles()
     processes = []
