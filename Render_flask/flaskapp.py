@@ -61,12 +61,9 @@ def get_set():
     else:
         print("We have a normal rarity")
         cards = Card.where(q=f'set.name:"{set_name}" rarity:"{rarity}"')
-    card_ids = []
-    images = []
-    for card in cards:
-        card_ids.append(card.id)
-        images.append(card.images.large)
-    print(card_ids)
+    #card_ids = [card.id for card in cards]
+    images = [card.images.large for card in cards]
+    #print(card_ids)
     return jsonify(images)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
