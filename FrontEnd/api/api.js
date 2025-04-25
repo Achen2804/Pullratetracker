@@ -11,12 +11,13 @@ module.exports = async (req, res) => {
   try {
     const Parameters = req.query;
     const endpoint = Parameters.endpoint;
+    let url = "";
     if(endpoint === undefined){
-      const url = `${targetUrl}data`;
+      url = `${targetUrl}data`;
     }else{
       delete Parameters.endpoint;
       const queryString = new URLSearchParams(Parameters).toString();
-      const url = `${targetUrl}${endpoint}?${queryString}`;
+     url = `${targetUrl}${endpoint}?${queryString}`;
     }
     
     const response = await fetch(url, {
