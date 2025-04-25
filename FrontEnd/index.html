@@ -131,8 +131,10 @@
     async function getRarityGallery(set_name,rarity){
       const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
       console.log(API);
+      console.time('MyFunction');
       response = await fetch(API, {method: 'GET',})
       const data = await response.json()
+      console.timeEnd('MyFunction');
         console.log('Data received from Flask app:', data);
         const images = document.createDocumentFragment();
         for(const URL of data){

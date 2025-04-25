@@ -100,7 +100,8 @@ def upload_image_data(setName):
     })
     cardTable = db.reference('Cards')
     setTable = db.reference('Sets')
-    
+    set = Set.find(setName)
+    print(set)
     return
 
 if __name__ == "__main__":
