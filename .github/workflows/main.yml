@@ -1,0 +1,26 @@
+name: Run Firebase Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-firebase-script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Firebase credentials
+      run: |
+        echo "${{ secrets.FIREBASE_KEY }}" > secrets/firebase-key.json
+        echo "POKEMON_API_KEY = ${{ secrets.POKEMON_API_KEY }}" >> $GITHUB_ENV
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Firebase script
+      run: |
+        python your_script.py

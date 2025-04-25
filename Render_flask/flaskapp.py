@@ -5,8 +5,11 @@ from pokemontcgsdk import Card
 from pokemontcgsdk import Set
 from pokemontcgsdk import RestClient
 import re
-
-RestClient.configure('3ba6f406-4bd1-4b37-ad93-64fef7a956d3')
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("POKEMON_API_KEY")
+RestClient.configure(API_KEY)
 
 app = Flask(__name__)
 CORS(app)

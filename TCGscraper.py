@@ -7,7 +7,11 @@ from multiprocessing import Pool
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-
+from dotenv import load_dotenv
+import os
+from pokemontcgsdk import Card
+from pokemontcgsdk import Set
+from pokemontcgsdk import RestClient
 def get_articles():
 # Headless mode (optional)
     op = Options()
@@ -81,6 +85,21 @@ def get_pullrates(args):
     return (setName,data) 
 
 def upload_image_data(setName):
+    
+
+    load_dotenv()
+    API_KEY = os.getenv("POKEMON_API_KEY")
+    RestClient.configure(API_KEY)
+    key_path = os.getenv("FIREBASE_KEY_PATH")
+    
+
+
+    cred = credentials.Certificate(key_path)
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
+    })
+    cardTable = db.reference('Cards')
+    setTable = db.reference('Sets')
     
     return
 

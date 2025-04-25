@@ -15,3 +15,4 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
 })
 ref = db.reference('Sets')
+print(ref.get())

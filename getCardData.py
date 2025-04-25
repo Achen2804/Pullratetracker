@@ -7,8 +7,11 @@ from pokemontcgsdk import Subtype
 from pokemontcgsdk import Rarity
 from pokemontcgsdk import RestClient
 import json
-
-RestClient.configure('3ba6f406-4bd1-4b37-ad93-64fef7a956d3')
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("POKEMON_API_KEY")
+RestClient.configure(API_KEY)
 
 def process_set(set_name):
     set = Set.find(set_name)
