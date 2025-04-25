@@ -292,38 +292,6 @@
             "Subrarities": []
         }
     ],
-    "151": [
-        {
-            "Rarity": "Foil Energy",
-            "Chances": "24.83",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Double Rare",
-            "Chances": "13.28",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "6.44",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Illustration Rare",
-            "Chances": "8.50",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Special Illustration Rare",
-            "Chances": "3.11",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Hyper Rare",
-            "Chances": "1.94",
-            "Subrarities": []
-        }
-    ],
     "Paldea Evolved": [
         {
             "Rarity": "Double Rare",
@@ -619,6 +587,65 @@
                     "Chances": "0.76"
                 }
             ]
+        }
+    ],
+    "Journey Together": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.29",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.54",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "8.50",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.16",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "0.73",
+            "Subrarities": []
+        }
+    ],
+    "Scarlet & Violet\u2014151": [
+        {
+            "Rarity": "Foil Energy",
+            "Chances": "24.83",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Double Rare",
+            "Chances": "13.28",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.44",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "8.50",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "3.11",
+            "Subrarities": []
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "1.94",
+            "Subrarities": []
         }
     ]
 }

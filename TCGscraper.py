@@ -17,18 +17,19 @@ def get_articles():
 
     driver.get(url)
 
-    content_container = driver.find_element(By.CSS_SELECTOR, "[data-testid = 'search-results__content-card-grid']")
+    content_container = driver.find_element(By.CLASS_NAME, "search-results")
 
-    relevant_articles = content_container.find_elements(By.XPATH, "//div[@class='grid' and @data-testid='search-results__content-card-grid']//a[@class='martech-base-link'][.//text()[contains(., 'Pokémon TCG')] and .//text()[contains(., 'Pull Rates')]]")
-    set_to_link = []
+    relevant_articles = content_container.find_elements(By.XPATH, "//div[@class='grid']//a[@class='martech-base-link'][.//text()[contains(., 'Pokémon TCG')] and .//text()[contains(., 'Pull Rates')]]")
+    set_to_link = {}
     for article in relevant_articles:
+        
         link = article.get_attribute("href")
         article_title = article.find_element(By.CLASS_NAME,"martech-heading-sm")
         title = article_title.text
         match = re.search(r"Pokémon TCG: (.*?) Pull Rates", title)
         if match:
             setName = match.group(1)
-            set_to_link.append([setName,link])
+            set_to_link[setName] = link
     driver.quit()
     return set_to_link
 
@@ -77,10 +78,16 @@ def get_pullrates(args):
     #print(data)
     return (setName,data) 
 if __name__ == "__main__":
-    dataToParse = get_articles()
+    dataCollected = get_articles()
     processes = []
-    get_pullrates(dataToParse[0])
-
+    #get_pullrates(dataToParse[0])
+    print(dataCollected)
+    with open('./FrontEnd/pokedata.json', 'r') as file:
+        currentdata = json.load(file)
+    currentSets = currentdata.keys()
+    dataToParse = {key: value for key, value in dataCollected.items() if key not in currentSets}
+    dataToParse = list(dataToParse.items())
+    print(dataToParse)
 
     with Pool(processes=len(dataToParse)) as pool:
         data = pool.map(get_pullrates, dataToParse)
@@ -88,8 +95,12 @@ if __name__ == "__main__":
     print(data)
     for set,numbers in data:
         results_dict[set] = numbers
-    with open("./FrontEnd/pokedata.json", "w") as json_file:
-        json.dump(results_dict, json_file, indent=4)
+    currentdata.update(results_dict)
+    with open("./FrontEnd/pokedata.json", "w+") as json_file:
+        json.dump(currentdata, json_file, indent=4)
+
+
+
     """
     
 

@@ -44,6 +44,10 @@ def get_set():
         set_name = set_name+' '+rarity
         print(set_name)
         cards = Card.where(q=f'set.name:"{set_name}"')
+    elif set_name == 'Scarlet & Violet\u2014151':
+        print("We have a special set")
+        set_name = '151'
+        cards = Card.where(q=f'set.name:"{set_name}" rarity:"{rarity}"')
     elif match:
         print("We might have to swap our wording around")
         print(rarity)
