@@ -12,6 +12,10 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
+    - name: Create secrets directory
+      run: |
+        mkdir -p secrets
+
     - name: Set up Firebase credentials
       run: |
         echo "${{ secrets.FIREBASE_KEY }}" > secrets/firebase-key.json
