@@ -2,14 +2,24 @@ module.exports = async (req, res) => {
     const time = new Date().getDate();
     let targetUrl = ""; 
     if(time <15){
-        targetUrl = "https://pullratetracker.onrender.com/api/data";
+        targetUrl = "https://pullratetracker.onrender.com/api/";
     }else{
-        targetUrl = "https://pullratetracker-1.onrender.com/api/data"
+        targetUrl = "https://pullratetracker-1.onrender.com/api/"
     }
   
 
   try {
-    const response = await fetch(targetUrl, {
+    const Parameters = req.query;
+    const endpoint = Parameters.endpoint;
+    if(endpoint === undefined){
+      const url = `${targetUrl}data`;
+    }else{
+      delete Parameters.endpoint;
+      const queryString = new URLSearchParams(Parameters).toString();
+      const url = `${targetUrl}${endpoint}?${queryString}`;
+    }
+    
+    const response = await fetch(url, {
       method: req.method,  
       headers: req.headers, 
       body: req.method === 'POST' || req.method === 'PUT' ? req.body : undefined, 

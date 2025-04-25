@@ -108,7 +108,7 @@
     </div>
   </div>
   <div id="data-container"></div>
-  <button onclick= "testApp()"> Testing</button>
+  
 
   <script>
   fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api', {method: 'HEAD'})
@@ -128,13 +128,8 @@
           container.appendChild(listItem);
         }
       })
-      async function testApp(){
-      response = await fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api',{ method: 'GET',})
-      const data = await response.json()
-      .catch(error => console.error('Error:', error));
-    }
     async function getRarityGallery(set_name,rarity){
-      const API = `https://pullratetracker.onrender.com/api/getset?set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
+      const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
       console.log(API);
       response = await fetch(API, {method: 'GET',})
       const data = await response.json()
