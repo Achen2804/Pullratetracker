@@ -24,7 +24,6 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
 })
 def process_request(set_name, rarity):
-    card_ref = db.reference('/Cards')
     
     match = re.match(r"(\S+(\s\S+)*)", rarity)
     word = match.group(1)  
@@ -36,7 +35,7 @@ def process_request(set_name, rarity):
         print("We have a set")
         
         for card_id in data_snapshot:
-            card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+            card_data = data_snapshot.get(card_id).get('image')
             if card_data:
                 images_urls.append(card_data)
     else:
@@ -46,7 +45,7 @@ def process_request(set_name, rarity):
             print("We have a set")
             
             for card_id in data_snapshot:
-                card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+                card_data = data_snapshot.get(card_id).get('image')
                 if card_data:
                     images_urls.append(card_data)
         else:
@@ -99,7 +98,7 @@ def get_set():
             for rarity, cards in data_snapshot.items():
                 for card_id, card_data in cards.items():
                     # Get image URLs (small and large) and add them to the list
-                    card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+                    card_data = data_snapshot.get(card_id).get('image')
                     if card_data:
                         images.append(card_data)
                     #print(card_id)
