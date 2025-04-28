@@ -7,10 +7,53 @@ from pokemontcgsdk import RestClient
 import re
 import os
 from dotenv import load_dotenv
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 load_dotenv()
 API_KEY = os.getenv("POKEMON_API_KEY")
 RestClient.configure(API_KEY)
+load_dotenv()
 
+key_path = os.getenv("FIREBASE_KEY_PATH")
+
+
+
+cred = credentials.Certificate(key_path)
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
+})
+def process_request(set_name, rarity):
+    card_ref = db.reference('/Cards')
+    card_db = card_ref.get()
+    match = re.match(r"(\w+)\sRare", rarity)
+    word = match.group(1)  
+    reverse = f"Rare {word}"
+    set_ref = db.reference(f'/Sets/{set_name}/{rarity}')
+    images_urls = []
+    if set_ref.get() is not None:
+        print("We have a set")
+        data_snapshot = set_ref.get()
+        for card_id in data_snapshot:
+            card_data = card_db.get(card_id)
+            images = card_data.get('images', {})
+            large_url = images.get('large')
+            if large_url:
+                images_urls.append(large_url)
+    else:
+        set_ref = db.reference(f'/Sets/{set_name}/{reverse}')
+        if set_ref.get() is not None:
+            print("We have a set")
+            data_snapshot = set_ref.get()
+            for card_id in data_snapshot:
+                card_data = card_db.get(card_id)
+                images = card_data.get('images', {})
+                large_url = images.get('large')
+                if large_url:
+                    images_urls.append(large_url)
+        else:
+            print("No data found for this set.")
+    return images_urls
 app = Flask(__name__)
 CORS(app)
 @app.route('/')
@@ -40,29 +83,45 @@ def get_set():
     print(f"Received rarity: {rarity}")
     if(set_name == 'None'):
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
-    cards = []
+    card_ref = db.reference('/Cards')
+    card_db = card_ref.get()
     match = re.match(r"(\w+)\sRare", rarity)
+    images = []
     if 'Gallery' in rarity:
         print("We have a gallery")
         set_name = set_name+' '+rarity
         print(set_name)
-        cards = Card.where(q=f'set.name:"{set_name}"')
+        set_ref = db.reference(f'/Sets/{set_name}')
+        card_ref = db.reference('/Cards')
+        if set_ref.get() is not None:
+            print("We have a set")
+            data_snapshot = set_ref.get()
+        
+        
+        if(data_snapshot is not None):
+            # Loop through rarities, and for each card, add its image URLs to the list
+            for rarity, cards in data_snapshot.items():
+                for card_id, card_data in cards.items():
+                    # Get image URLs (small and large) and add them to the list
+                    card_data = card_db.get(card_id)
+                    card_images = card_data.get('images', {})
+                    large_url = card_images.get('large')
+                    if large_url:
+                        images.append(large_url)
+                    #print(card_id)
     elif set_name == 'Scarlet & Violet\u2014151':
         print("We have a special set")
         set_name = '151'
-        cards = Card.where(q=f'set.name:"{set_name}" rarity:"{rarity}"')
+        images = process_request(set_name, rarity)
     elif match:
         print("We might have to swap our wording around")
         print(rarity)
-        word = match.group(1)  
-        reverse = f"Rare {word}"
-        print(reverse)
-        cards = Card.where(q=f'(set.name:"{set_name}") (rarity:"{rarity}" OR rarity:"{reverse}")')
+        images = process_request(set_name, rarity)
     else:
         print("We have a normal rarity")
-        cards = Card.where(q=f'set.name:"{set_name}" rarity:"{rarity}"')
+        images = process_request(set_name, rarity)
     #card_ids = [card.id for card in cards]
-    images = [card.images.large for card in cards]
+    
     #print(card_ids)
     return jsonify(images)
 if __name__ == '__main__':

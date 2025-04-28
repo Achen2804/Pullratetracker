@@ -85,8 +85,32 @@ def get_pullrates(args):
     return (setName,data) 
 
 def upload_image_data(setName):
-    
 
+    ref = db.reference('Sets')
+    #print(ref.get())
+    cardTable = db.reference('Cards')
+    setTable = db.reference('Sets')
+    relevantSet = setTable.child(setName)
+    cards = Card.where(q=f'set.name:"{setName}"')
+    for card in cards:
+        print(card.name)
+        if(card.rarity != None and cardTable.get(card.id) == None):
+            relevantSet.child(card.rarity).child(card.id).set({
+                'name': card.name,
+            })
+            cardTable.child(card.id).set({
+                'images': {
+                    'large': card.images.large,
+                    'small': card.images.small
+                }
+            })
+    return
+
+if __name__ == "__main__":
+    dataCollected = get_articles()
+    processes = []
+    #get_pullrates(dataToParse[0])
+    #print(dataCollected)
     load_dotenv()
     API_KEY = os.getenv("POKEMON_API_KEY")
     RestClient.configure(API_KEY)
@@ -98,28 +122,22 @@ def upload_image_data(setName):
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
     })
-    cardTable = db.reference('Cards')
-    setTable = db.reference('Sets')
-    set = Set.find(setName)
-    print(set)
-    return
-
-if __name__ == "__main__":
-    dataCollected = get_articles()
-    processes = []
-    #get_pullrates(dataToParse[0])
-    print(dataCollected)
     with open('./FrontEnd/pokedata.json', 'r') as file:
         currentdata = json.load(file)
     currentSets = currentdata.keys()
     dataToParse = {key: value for key, value in dataCollected.items() if key not in currentSets}
     dataToParse = list(dataToParse.items())
-    print(dataToParse)
-
+    #print(dataToParse)
+    for setName in currentSets:
+        print(setName)
+        upload_image_data(setName)
+    if(len(dataToParse) == 0):
+        print("No new sets to parse")
+        exit(0)
     with Pool(processes=len(dataToParse)) as pool:
         data = pool.map(get_pullrates, dataToParse)
     results_dict= {}
-    print(data)
+    #print(data)
     for set,numbers in data:
         results_dict[set] = numbers
     currentdata.update(results_dict)
