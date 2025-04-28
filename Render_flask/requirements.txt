@@ -4,3 +4,4 @@ flask_cors
 requests
 pokemontcgsdk
 dotenv
+firebase_admin
