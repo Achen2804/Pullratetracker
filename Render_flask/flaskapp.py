@@ -25,9 +25,7 @@ firebase_admin.initialize_app(cred, {
 })
 def process_request(set_name, rarity):
     
-    match = re.match(r"(\S+(\s\S+)*)", rarity)
-    word = match.group(1)  
-    reverse = f"Rare {word}"
+    
     set_ref = db.reference(f'/Sets/{set_name}/{rarity}')
     images_urls = []
     data_snapshot = set_ref.get()
@@ -39,6 +37,8 @@ def process_request(set_name, rarity):
             if card_data:
                 images_urls.append(card_data)
     else:
+        words = rarity.split()  
+        reverse = "Rare " + " ".join(words[:-1])
         set_ref = db.reference(f'/Sets/{set_name}/{reverse}')
         data_snapshot = set_ref.get()
         if data_snapshot is not None:
