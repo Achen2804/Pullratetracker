@@ -26,7 +26,7 @@ firebase_admin.initialize_app(cred, {
 def process_request(set_name, rarity):
     card_ref = db.reference('/Cards')
     
-    match = re.match(r"(\w+)\sRare", rarity)
+    match = re.match(r"(\S+(\s\S+)*)", rarity)
     word = match.group(1)  
     reverse = f"Rare {word}"
     set_ref = db.reference(f'/Sets/{set_name}/{rarity}')
@@ -81,7 +81,7 @@ def get_set():
     print(f"Received rarity: {rarity}")
     if(set_name == 'None'):
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
-    match = re.match(r"(\w+)\sRare", rarity)
+    match = re.match(r"(\S+(\s\S+)*)", rarity)
     images = []
     if 'Gallery' in rarity:
         print("We have a gallery")
