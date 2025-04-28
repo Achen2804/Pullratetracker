@@ -25,32 +25,30 @@ firebase_admin.initialize_app(cred, {
 })
 def process_request(set_name, rarity):
     card_ref = db.reference('/Cards')
-    card_db = card_ref.get()
+    
     match = re.match(r"(\w+)\sRare", rarity)
     word = match.group(1)  
     reverse = f"Rare {word}"
     set_ref = db.reference(f'/Sets/{set_name}/{rarity}')
     images_urls = []
-    if set_ref.get() is not None:
+    data_snapshot = set_ref.get()
+    if data_snapshot is not None:
         print("We have a set")
-        data_snapshot = set_ref.get()
+        
         for card_id in data_snapshot:
-            card_data = card_db.get(card_id)
-            images = card_data.get('images', {})
-            large_url = images.get('large')
-            if large_url:
-                images_urls.append(large_url)
+            card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+            if card_data:
+                images_urls.append(card_data)
     else:
         set_ref = db.reference(f'/Sets/{set_name}/{reverse}')
-        if set_ref.get() is not None:
+        data_snapshot = set_ref.get()
+        if data_snapshot is not None:
             print("We have a set")
-            data_snapshot = set_ref.get()
+            
             for card_id in data_snapshot:
-                card_data = card_db.get(card_id)
-                images = card_data.get('images', {})
-                large_url = images.get('large')
-                if large_url:
-                    images_urls.append(large_url)
+                card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+                if card_data:
+                    images_urls.append(card_data)
         else:
             print("No data found for this set.")
     return images_urls
@@ -83,8 +81,6 @@ def get_set():
     print(f"Received rarity: {rarity}")
     if(set_name == 'None'):
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
-    card_ref = db.reference('/Cards')
-    card_db = card_ref.get()
     match = re.match(r"(\w+)\sRare", rarity)
     images = []
     if 'Gallery' in rarity:
@@ -92,10 +88,10 @@ def get_set():
         set_name = set_name+' '+rarity
         print(set_name)
         set_ref = db.reference(f'/Sets/{set_name}')
-        card_ref = db.reference('/Cards')
-        if set_ref.get() is not None:
+        data_snapshot = set_ref.get()
+        if data_snapshot is not None:
             print("We have a set")
-            data_snapshot = set_ref.get()
+            
         
         
         if(data_snapshot is not None):
@@ -103,11 +99,9 @@ def get_set():
             for rarity, cards in data_snapshot.items():
                 for card_id, card_data in cards.items():
                     # Get image URLs (small and large) and add them to the list
-                    card_data = card_db.get(card_id)
-                    card_images = card_data.get('images', {})
-                    large_url = card_images.get('large')
-                    if large_url:
-                        images.append(large_url)
+                    card_data = db.reference(f'/Cards/{card_id}/images/large').get()
+                    if card_data:
+                        images.append(card_data)
                     #print(card_id)
     elif set_name == 'Scarlet & Violet\u2014151':
         print("We have a special set")
