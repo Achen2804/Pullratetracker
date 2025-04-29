@@ -84,7 +84,7 @@ def get_set():
     images = []
     if 'Gallery' in rarity:
         print("We have a gallery")
-        rarity = 'Trainer Gallery Holo Rare'
+        rarity = 'Trainer Gallery Rare Holo'
         images = process_request(set_name, rarity)
                     #print(card_id)
     elif set_name == 'Scarlet & Violet\u2014151':
