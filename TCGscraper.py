@@ -92,18 +92,21 @@ def upload_image_data(setName):
     setTable = db.reference('Sets')
     relevantSet = setTable.child(setName)
     cards = Card.where(q=f'set.name:"{setName}"')
+    updates = {}
+    
+    # Loop through cards and prepare the updates
     for card in cards:
-        print(card.name)
-        if(card.rarity != None and cardTable.get(card.id) == None):
-            relevantSet.child(card.rarity).child(card.id).set({
+        if card.rarity is not None:
+            # Update the relevant set with card data
+            set_path = f"/Sets/{setName}/{card.rarity}/{card.id}"
+            updates[set_path] = {
                 'name': card.name,
-            })
-            cardTable.child(card.id).set({
-                'images': {
-                    'large': card.images.large,
-                    'small': card.images.small
-                }
-            })
+                'image': card.images.large,
+            }
+    
+    # Perform the update in one go
+    if updates:
+        db.reference().update(updates)
     return
 
 if __name__ == "__main__":

@@ -82,7 +82,7 @@ def get_set():
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
     match = re.match(r"(\S+(\s\S+)*)", rarity)
     images = []
-    if 'Trainer Gallery' == rarity:
+    if 'Gallery' in rarity:
         print("We have a gallery")
         rarity = 'Trainer Gallery Holo Rare'
         images = process_request(set_name, rarity)
