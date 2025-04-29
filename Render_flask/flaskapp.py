@@ -82,23 +82,7 @@ def get_set():
         return jsonify({'error':'Something went wrong and no set name was provided. Please try again'})
     match = re.match(r"(\S+(\s\S+)*)", rarity)
     images = []
-    if 'Galarian Gallery' == rarity:
-        print("We have a Galarian gallery")
-        set_name = set_name+' '+rarity
-        print(set_name)
-        set_ref = db.reference(f'/Sets/{set_name}')
-        data_snapshot = set_ref.get()
-            
-        if(data_snapshot is not None):
-            # Loop through rarities, and for each card, add its image URLs to the list
-            for rarity, cards in data_snapshot.items():
-                for card_id, card_data in cards.items():
-                    # Get image URLs (small and large) and add them to the list
-                    card_data = data_snapshot.get(card_id).get('image')
-                    if card_data:
-                        images.append(card_data)
-
-    elif 'Trainer Gallery' == rarity:
+    if 'Trainer Gallery' == rarity:
         print("We have a gallery")
         rarity = 'Trainer Gallery Holo Rare'
         images = process_request(set_name, rarity)
