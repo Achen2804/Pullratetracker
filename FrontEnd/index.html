@@ -216,24 +216,22 @@
               subrarityData.style.margin = '0';
               subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`;
               
-              const toggleButton = document.createElement('button');
-              toggleButton.textContent = '+';
-              toggleButton.classList.add('adding-button');
-              
-              toggleButton.onclick = function() {
-                if(toggleButton.textContent === '+') {
-                  toggleButton.textContent = '-';
-                  toggleButton.classList.remove('adding-button');
-                  toggleButton.classList.add('removing-button');
-                } else {
-                  toggleButton.textContent = '+';
-                  toggleButton.classList.remove('removing-button');
-                  toggleButton.classList.add('adding-button');
-                }
+              const addButton = document.createElement('button');
+                addButton.textContent = '+';
+                addButton.classList.add('adding-button');
+                addButton.onclick = function() {
+                
               };
-              
+              const removeButton = document.createElement('button');
+                removeButton.textContent = '-';
+                removeButton.classList.add('adding-button');
+
+                removeButton.onclick = function() {
+
+              };
               subrarityContainer.appendChild(subrarityData);
-              subrarityContainer.appendChild(toggleButton);
+              subrarityContainer.appendChild(addButton);
+              subrarityContainer.appendChild(removeButton);
               content.appendChild(subrarityContainer);
             }
             
