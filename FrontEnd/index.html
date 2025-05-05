@@ -16,26 +16,25 @@
       color: #0d8ba1;
       text-decoration: none;
     }
-    .dropbtn {
-      background-color: #04AA6E;
-      color: black;
-      padding: 40px 50px;
-      font-size: 46px;
-      border: none;
+    .select-container {
+      width: 80%;
+      margin: 20px auto;
+      text-align: center;
+    }
+    
+    .set-select {
+      width: 100%;
+      padding: 15px;
+      font-size: 20px;
+      border: 2px solid #04AA6E;
+      border-radius: 8px;
+      background-color: white;
+      cursor: pointer;
     }
 
-    .dropdown-content {
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 80%;
-      max-width: 100%;
-      max-height: none;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      overflow-y: auto;
-      display: none;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      padding: 10px;
+    .set-select:focus {
+      outline: none;
+      border-color: #038857;
     }
     .adding-button {
       padding: 5px 10px;
@@ -118,10 +117,10 @@
 
 <body>
   <h1 style="text-align:center">Pokémon Pull Rates</h1>
-  <div class="setRateDrop" id="Tool-Drop-Button">
-    <button class="dropbtn">Set List</button>
-    <div class="dropdown-content" id="Set-List">
-    </div>
+  <div class="select-container">
+    <select id="Set-List" class="set-select">
+      <option value="" disabled selected>Choose a Set</option>
+    </select>
   </div>
   <div id="data-container"></div>
 
@@ -136,12 +135,10 @@
       .then(data => {
         const container = document.getElementById('Set-List');
         for (const [setName, details] of Object.entries(data)) {
-          const listItem = document.createElement('a');
-          listItem.href = '#';
-          listItem.textContent = setName;
-          listItem.textSize = "50px";
-          listItem.onclick = function() { getData(setName); };
-          container.appendChild(listItem);
+          const option = document.createElement('option');
+          option.value = setName;
+          option.textContent = setName;
+          container.appendChild(option);
         }
       })
     async function getRarityGallery(set_name,rarity){
@@ -198,6 +195,11 @@
             menuItem.style.width="100%";
             menuItem.setAttribute('set_name', setName);
             menuItem.setAttribute('rarity', RarityTuple.Rarity);
+
+    document.getElementById('Set-List').addEventListener('change', function() {
+      getData(this.value);
+    });
+
 
 
             const content = document.createElement('div');
