@@ -138,6 +138,7 @@
           const option = document.createElement('option');
           option.value = setName;
           option.textContent = setName;
+          option.addEventListener("click", () => getData(setName));
           container.appendChild(option);
         }
       })
