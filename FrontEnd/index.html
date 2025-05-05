@@ -97,7 +97,7 @@
       background-color: #f9f9f9;
       border-radius: 8px;
     }
-  
+
     @media (max-width: 768px) {
       .dropdown-content {
         box-sizing: border-box;
@@ -124,7 +124,7 @@
     </div>
   </div>
   <div id="data-container"></div>
-  
+
 
   <script>
   fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api', {method: 'HEAD'})
@@ -211,16 +211,16 @@
               subrarityContainer.style.alignItems = 'center';
               subrarityContainer.style.gap = '10px';
               subrarityContainer.style.margin = '10px 0';
-              
+
               const subrarityData = document.createElement('p');
               subrarityData.style.margin = '0';
               subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`;
-              
+
               const addButton = document.createElement('button');
                 addButton.textContent = '+';
                 addButton.classList.add('adding-button');
                 addButton.onclick = function() {
-                
+
               };
               const removeButton = document.createElement('button');
                 removeButton.textContent = '-';
@@ -234,7 +234,7 @@
               subrarityContainer.appendChild(removeButton);
               content.appendChild(subrarityContainer);
             }
-            
+
             let isFirstClick = true;
             // Add event listener for toggling visibility
             menuItem.addEventListener('click',async () => {
@@ -260,7 +260,7 @@
                     }
                     content.style.display = content.style.display === "none" ? "block" : "none"
 
-                    
+
                 });
 
                 //Putting the parts together. SetData contains the button and the content div.
@@ -271,17 +271,17 @@
               setData.appendChild(menuItem);
               setData.appendChild(content);
 
-              
+
               container.appendChild(setData)
-            
+
         };
               }
             })
       .catch(error => console.error('Error loading JSON:', error)); 
     }
-    
-    
-    
+
+
+
 
   </script>
 </body>
