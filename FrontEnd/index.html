@@ -1,164 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokémon Pull Rates</title>
-  <style>
-    body {
-      color: #325050;
-      background: #fff;
-      font-family: 'Libre Baskerville', sans-serif;
-      font-size: 70%;
-    }
-    a {
-      color: #0d8ba1;
-      text-decoration: none;
-    }
-    .select-container {
-      width: 80%;
-      margin: 20px auto;
-      text-align: center;
-    }
-
-    .set-select {
-      width: 100%;
-      padding: 15px;
-      font-size: 20px;
-      border: 2px solid #04AA6E;
-      border-radius: 8px;
-      background-color: white;
-      cursor: pointer;
-    }
-
-    .set-select:focus {
-      outline: none;
-      border-color: #038857;
-    }
-    .adding-button {
-      padding: 5px 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .removing-button {
-      padding: 5px 10px;
-      background-color: #f44336;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    @media (min-width: 900px) {
-      .dropdown-grid { grid-template-columns: repeat(5, 1fr); }
-    }
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
-    .setRateDrop {
-      position: relative;  /* Ensure dropdown is positioned within this container */
-    }
-    .setRateDrop:hover .dropdown-content {
-      display: grid;
-    }
-
-    .setRateDrop:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-    #Tool-Drop-Button {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: fit-content;
-      margin: 0 auto;
-      position: relative; 
-      min-width: 50%;
-      max-width: 90%;
-    }
-
-    #data-container {
-      margin-top: 10%; 
-      padding: 10px;
-      width: 80%; 
-      margin-left: auto;
-      margin-right: auto;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .dropdown-content {
-        box-sizing: border-box;
-        position: relative;
-        min-width: 80%;
-        max-width: 100%;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Pull Rates</title>
+    <style>
+      body {
+        color: #325050;
+        background: #fff;
+        font-family: "Libre Baskerville", sans-serif;
+        font-size: 70%;
+      }
+      a {
+        color: #0d8ba1;
+        text-decoration: none;
+      }
+      .select-container {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
       }
 
-      .dropdown-content.show {
+      .set-select {
+        width: 100%;
+        padding: 15px;
+        font-size: 20px;
+        border: 2px solid #04aa6e;
+        border-radius: 8px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      .set-select:focus {
+        outline: none;
+        border-color: #038857;
+      }
+      .adding-button {
+        padding: 5px 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .removing-button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      @media (min-width: 900px) {
+        .dropdown-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
         display: block;
       }
-      .setRateDrop .dropbtn {
-        width: 100%; 
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <h1 style="text-align:center">Pokémon Pull Rates</h1>
-  <div class="select-container">
-    <select id="Set-List" class="set-select">
-      <option value="" disabled selected>Choose a Set</option>
-    </select>
-  </div>
-  <div id="data-container"></div>
+      .setRateDrop {
+        position: relative; /* Ensure dropdown is positioned within this container */
+      }
+      .setRateDrop:hover .dropdown-content {
+        display: grid;
+      }
 
+      .setRateDrop:hover .dropbtn {
+        background-color: #3e8e41;
+      }
+      #Tool-Drop-Button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: fit-content;
+        margin: 0 auto;
+        position: relative;
+        min-width: 50%;
+        max-width: 90%;
+      }
 
-  <script>
-  fetch('https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api', {method: 'HEAD'})
-  .then(response => {
-    console.log('Response Headers:', response.headers);}).catch(error => console.error('Error:', error))
+      #data-container {
+        margin-top: 10%;
+        padding: 10px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+      }
 
-    fetch('pokedata.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('Set-List');
-        for (const [setName, details] of Object.entries(data)) {
-          const option = document.createElement('option');
-          option.value = setName;
-          option.textContent = setName;
-          container.appendChild(option);
+      @media (max-width: 768px) {
+        .dropdown-content {
+          box-sizing: border-box;
+          position: relative;
+          min-width: 80%;
+          max-width: 100%;
         }
-      })
 
-    // Add event listener to select element
-    document.getElementById('Set-List').addEventListener('change', function() {
-      getData(this.value);
-    });
+        .dropdown-content.show {
+          display: block;
+        }
+        .setRateDrop .dropbtn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
 
-    async function getRarityGallery(set_name,rarity){
-      const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
-      console.log(API);
-      console.time('MyFunction');
-      response = await fetch(API, {method: 'GET',})
-      const data = await response.json()
-      console.timeEnd('MyFunction');
-        console.log('Data received from Flask app:', data);
+  <body>
+    <h1 style="text-align: center">Pokémon Pull Rates</h1>
+    <div class="select-container">
+      <select id="Set-List" class="set-select">
+        <option value="" disabled selected>Choose a Set</option>
+      </select>
+    </div>
+    <div id="data-container"></div>
+
+    <script>
+      fetch(
+        "https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api",
+        { method: "HEAD" },
+      )
+        .then((response) => {
+          console.log("Response Headers:", response.headers);
+        })
+        .catch((error) => console.error("Error:", error));
+      let selectedItems =
+        JSON.parse(sessionStorage.getItem("selectedItems")) || [];
+
+      fetch("pokedata.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.getElementById("Set-List");
+          for (const [setName, details] of Object.entries(data)) {
+            const option = document.createElement("option");
+            option.value = setName;
+            option.textContent = setName;
+            container.appendChild(option);
+          }
+          container.addEventListener("change", function () {
+            getData(this.value);
+          });
+        });
+
+      async function getRarityGallery(set_name, rarity) {
+        const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
+        console.log(API);
+        console.time("MyFunction");
+        response = await fetch(API, { method: "GET" });
+        const data = await response.json();
+        console.timeEnd("MyFunction");
+        console.log("Data received from Flask app:", data);
         const images = document.createDocumentFragment();
-        for(const URL of data){
+        for (const URL of data) {
           console.log(URL);
-          const img = document.createElement('img');
+          const img = document.createElement("img");
           img.src = URL;
           img.style.width = "100%";
           img.style.height = "auto";
@@ -166,134 +171,134 @@
           images.appendChild(img);
         }
         //document.body.appendChild(images);
-        console.log('Type:', typeof images);
+        console.log("Type:", typeof images);
         return images;
-    }
-    function getData(setName) {
-      fetch('pokedata.json')
-      .then(response => response.json())  
-      .then(data => {
-        const container = document.getElementById('data-container');
-        container.innerHTML = '';
+      }
+      function getData(setName) {
+        fetch("pokedata.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const container = document.getElementById("data-container");
+            container.innerHTML = "";
 
-        // Set title with styling
-        const SetTitle = document.createElement('h2');
-        SetTitle.textContent = setName;
-        SetTitle.style.textAlign = 'center';
-        SetTitle.style.marginBottom = '20px';
-        container.appendChild(SetTitle);
+            // Set title with styling
+            const SetTitle = document.createElement("h2");
+            SetTitle.textContent = setName;
+            SetTitle.style.textAlign = "center";
+            SetTitle.style.marginBottom = "20px";
+            container.appendChild(SetTitle);
 
-        if(data[setName]) {
-          const Rarities = data[setName];
-          for(const RarityTuple of Rarities) {
-            const subRarity = RarityTuple.Subrarities;
+            if (data[setName]) {
+              const Rarities = data[setName];
+              for (const RarityTuple of Rarities) {
+                const subRarity = RarityTuple.Subrarities;
 
-            // Create rarity section container
-            const raritySection = document.createElement('div');
-            raritySection.style.marginBottom = '15px';
+                // Create rarity section container
+                const raritySection = document.createElement("div");
+                raritySection.style.marginBottom = "15px";
 
-            // Create rarity button with improved styling
-            const menuItem = document.createElement('button');
-            menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`;
-            menuItem.style.padding = '12px 20px';
-            menuItem.style.cursor = 'pointer';
-            menuItem.style.backgroundColor = '#4CAF50';
-            menuItem.style.color = 'white';
-            menuItem.style.border = 'none';
-            menuItem.style.borderRadius = '8px';
-            menuItem.style.width = '100%';
-            menuItem.style.fontSize = '16px';
-            menuItem.style.transition = 'background-color 0.3s';
-            menuItem.setAttribute('set_name', setName);
-            menuItem.setAttribute('rarity', RarityTuple.Rarity);
+                // Create rarity button with improved styling
+                const menuItem = document.createElement("button");
+                menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1 / RarityTuple.Chances) * 100).toFixed(2)} packs`;
+                menuItem.style.padding = "12px 20px";
+                menuItem.style.cursor = "pointer";
+                menuItem.style.backgroundColor = "#4CAF50";
+                menuItem.style.color = "white";
+                menuItem.style.border = "none";
+                menuItem.style.borderRadius = "8px";
+                menuItem.style.width = "100%";
+                menuItem.style.fontSize = "16px";
+                menuItem.style.transition = "background-color 0.3s";
+                menuItem.setAttribute("set_name", setName);
+                menuItem.setAttribute("rarity", RarityTuple.Rarity);
 
-            const setData = document.createElement('div');
+                const setData = document.createElement("div");
 
+                const content = document.createElement("div");
+                content.style.display = "none";
+                content.style.paddingLeft = "20px";
+                content.style.marginTop = "10px";
+                content.style.backgroundColor = "#f1f1f1";
+                for (const SubRarityTuple of subRarity) {
+                  const subrarityContainer = document.createElement("div");
+                  subrarityContainer.style.display = "flex";
+                  subrarityContainer.style.alignItems = "center";
+                  subrarityContainer.style.gap = "10px";
+                  subrarityContainer.style.margin = "10px 0";
 
-            const content = document.createElement('div');
-            content.style.display = 'none'; 
-            content.style.paddingLeft = '20px';
-            content.style.marginTop = '10px';
-            content.style.backgroundColor = "#f1f1f1";
-            for(const SubRarityTuple of subRarity){
-              const subrarityContainer = document.createElement('div');
-              subrarityContainer.style.display = 'flex';
-              subrarityContainer.style.alignItems = 'center';
-              subrarityContainer.style.gap = '10px';
-              subrarityContainer.style.margin = '10px 0';
+                  const subrarityData = document.createElement("p");
+                  subrarityData.style.margin = "0";
+                  subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1 / SubRarityTuple.Chances) * 100).toFixed(2)} packs`;
 
-              const subrarityData = document.createElement('p');
-              subrarityData.style.margin = '0';
-              subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`;
+                  const addButton = document.createElement("button");
+                  addButton.textContent = "+";
+                  addButton.classList.add("adding-button");
+                  addButton.onclick = function () {};
+                  const quantity = document.createElement("input");
+                  quantity.setAttribute("type", "number");
+                  quantity.setAttribute("min", "0");
+                  quantity.setAttribute("value", "0");
+                  quantity.value = 0;
+                  quantity.id = "quantityBoxTracker";
+                  quantity.step = "1";
 
-              const addButton = document.createElement('button');
-                addButton.textContent = '+';
-                addButton.classList.add('adding-button');
-                addButton.onclick = function() {
+                  const removeButton = document.createElement("button");
+                  removeButton.textContent = "-";
+                  removeButton.classList.add("removing-button");
 
-              };
-              const removeButton = document.createElement('button');
-                removeButton.textContent = '-';
-                removeButton.classList.add('adding-button');
+                  removeButton.onclick = function () {};
+                  subrarityContainer.appendChild(subrarityData);
+                  subrarityContainer.appendChild(addButton);
+                  subrarityContainer.appendChild(quantity);
+                  subrarityContainer.appendChild(removeButton);
+                  content.appendChild(subrarityContainer);
+                }
 
-                removeButton.onclick = function() {
-
-              };
-              subrarityContainer.appendChild(subrarityData);
-              subrarityContainer.appendChild(addButton);
-              subrarityContainer.appendChild(removeButton);
-              content.appendChild(subrarityContainer);
-            }
-
-            let isFirstClick = true;
-            // Add event listener for toggling visibility
-            menuItem.addEventListener('click',async () => {
-                    // Toggle visibility of content
-                      if(isFirstClick){
-                      isFirstClick = false;
-                      const set = menuItem.getAttribute('set_name');
-                      const rarity = menuItem.getAttribute('rarity');
-                      const rarity_gallery = await getRarityGallery(set, rarity);
-                      const image_gallery = document.createElement('div');
-                      image_gallery.style.display = 'grid';
-                      //Change row based on window size
-                      if (window.innerWidth > 768) {
-                        image_gallery.style.gridTemplateColumns = "repeat(5, 1fr)";
-                      } else if (window.innerWidth > 480) {
-                        image_gallery.style.gridTemplateColumns = "repeat(2, 1fr)";
-                      } else {
-                        image_gallery.style.gridTemplateColumns = "1fr";
-                      }
-                      console.log('Type:', typeof rarity_gallery);
-                      image_gallery.appendChild(rarity_gallery);
-                      content.appendChild(image_gallery);
+                let isFirstClick = true;
+                // Add event listener for toggling visibility
+                menuItem.addEventListener("click", async () => {
+                  // Toggle visibility of content
+                  if (isFirstClick) {
+                    isFirstClick = false;
+                    const set = menuItem.getAttribute("set_name");
+                    const rarity = menuItem.getAttribute("rarity");
+                    const rarity_gallery = await getRarityGallery(set, rarity);
+                    const image_gallery = document.createElement("div");
+                    image_gallery.style.display = "grid";
+                    //Change row based on window size
+                    if (window.innerWidth > 768) {
+                      image_gallery.style.gridTemplateColumns =
+                        "repeat(5, 1fr)";
+                    } else if (window.innerWidth > 480) {
+                      image_gallery.style.gridTemplateColumns =
+                        "repeat(2, 1fr)";
+                    } else {
+                      image_gallery.style.gridTemplateColumns = "1fr";
                     }
-                    content.style.display = content.style.display === "none" ? "block" : "none"
-
-
+                    console.log("Type:", typeof rarity_gallery);
+                    image_gallery.appendChild(rarity_gallery);
+                    content.appendChild(image_gallery);
+                  }
+                  content.style.display =
+                    content.style.display === "none" ? "block" : "none";
                 });
 
                 //Putting the parts together. SetData contains the button and the content div.
                 //Content div contains the subrarities and relevant data
-                //MenuItem is the button that will toggle the visibility of the content div and show the rarity of the type. 
-              menuItem.onmouseover = () => menuItem.style.backgroundColor = "#45a049";
-              menuItem.onmouseout = () => menuItem.style.backgroundColor = "#4CAF50";
-              setData.appendChild(menuItem);
-              setData.appendChild(content);
+                //MenuItem is the button that will toggle the visibility of the content div and show the rarity of the type.
+                menuItem.onmouseover = () =>
+                  (menuItem.style.backgroundColor = "#45a049");
+                menuItem.onmouseout = () =>
+                  (menuItem.style.backgroundColor = "#4CAF50");
+                setData.appendChild(menuItem);
+                setData.appendChild(content);
 
-
-              container.appendChild(setData)
-
-        };
+                container.appendChild(setData);
               }
-            })
-      .catch(error => console.error('Error loading JSON:', error)); 
-    }
-
-
-
-
-  </script>
-</body>
-
+            }
+          })
+          .catch((error) => console.error("Error loading JSON:", error));
+      }
+    </script>
+  </body>
 </html>
