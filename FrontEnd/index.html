@@ -11,6 +11,24 @@
         font-family: "Libre Baskerville", sans-serif;
         font-size: 70%;
       }
+      #fixed-bottom-item {
+        position: fixed;
+        bottom: 0;          
+        left: 0;           
+        width: 100%;        
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        z-index: 1000;      
+      }
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
       a {
         color: #0d8ba1;
         text-decoration: none;
@@ -124,7 +142,9 @@
       </select>
     </div>
     <div id="data-container"></div>
-
+    <div id="fixed-bottom-item">
+      <p>This is a fixed item at the bottom of the screen. It will always follow you.</p>
+    </div>
     <script>
       fetch(
         "https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api",
@@ -233,20 +253,32 @@
                   const addButton = document.createElement("button");
                   addButton.textContent = "+";
                   addButton.classList.add("adding-button");
-                  addButton.onclick = function () {};
+                  addButton.onclick = function () {
+                    let currentQ = Math.floor(parseFloat(quantity.value));
+                    currentQ = currentQ + 1;
+                    quantity.value = currentQ;
+                  };
                   const quantity = document.createElement("input");
                   quantity.setAttribute("type", "number");
                   quantity.setAttribute("min", "0");
                   quantity.setAttribute("value", "0");
                   quantity.value = 0;
                   quantity.id = "quantityBoxTracker";
-                  quantity.step = "1";
+                  quantity.style.width = "20px";
+                  quantity.addEventListener('input', () => {
+                    let currentQ = Math.floor(parseFloat(quantity.value));
+                      quantity.value = currentQ;
+                  });
 
                   const removeButton = document.createElement("button");
                   removeButton.textContent = "-";
                   removeButton.classList.add("removing-button");
-
-                  removeButton.onclick = function () {};
+                  removeButton.onclick = function () {
+                    let currentQ = Math.floor(parseFloat(quantity.value));
+                    currentQ = Math.max(currentQ -1,0);
+                    
+                    quantity.value = currentQ;
+                  };
                   subrarityContainer.appendChild(subrarityData);
                   subrarityContainer.appendChild(addButton);
                   subrarityContainer.appendChild(quantity);
