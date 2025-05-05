@@ -27,17 +27,15 @@
     .dropdown-content {
       position: absolute;
       background-color: #f1f1f1;
-      width: 90%;
-      max-height: 70vh;
+      min-width: 80%;
+      max-width: 100%;
+      max-height: none;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
       display: none;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       padding: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 8px;
     }
     .adding-button {
       padding: 5px 10px;
