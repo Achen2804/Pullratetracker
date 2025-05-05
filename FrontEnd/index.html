@@ -21,7 +21,7 @@
       margin: 20px auto;
       text-align: center;
     }
-    
+
     .set-select {
       width: 100%;
       padding: 15px;
@@ -138,10 +138,15 @@
           const option = document.createElement('option');
           option.value = setName;
           option.textContent = setName;
-          option.addEventListener("click", () => getData(setName));
           container.appendChild(option);
         }
       })
+
+    // Add event listener to select element
+    document.getElementById('Set-List').addEventListener('change', function() {
+      getData(this.value);
+    });
+
     async function getRarityGallery(set_name,rarity){
       const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
       console.log(API);
@@ -170,7 +175,7 @@
       .then(data => {
         const container = document.getElementById('data-container');
         container.innerHTML = '';
-        
+
         // Set title with styling
         const SetTitle = document.createElement('h2');
         SetTitle.textContent = setName;
@@ -186,7 +191,7 @@
             // Create rarity section container
             const raritySection = document.createElement('div');
             raritySection.style.marginBottom = '15px';
-            
+
             // Create rarity button with improved styling
             const menuItem = document.createElement('button');
             menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`;
@@ -202,10 +207,7 @@
             menuItem.setAttribute('set_name', setName);
             menuItem.setAttribute('rarity', RarityTuple.Rarity);
 
-    document.getElementById('Set-List').addEventListener('change', function() {
-      getData(this.value);
-    });
-
+            const setData = document.createElement('div');
 
 
             const content = document.createElement('div');
