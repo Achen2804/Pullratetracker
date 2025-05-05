@@ -169,31 +169,36 @@
       .then(response => response.json())  
       .then(data => {
         const container = document.getElementById('data-container');
-        container.innerHTML = ''
+        container.innerHTML = '';
+        
+        // Set title with styling
         const SetTitle = document.createElement('h2');
         SetTitle.textContent = setName;
+        SetTitle.style.textAlign = 'center';
+        SetTitle.style.marginBottom = '20px';
         container.appendChild(SetTitle);
-        if(data[setName]){
-          const Rarities = data[setName]
-          for(const RarityTuple of Rarities){
-            const subRarity = RarityTuple.Subrarities
 
-            //If there are subrarities, create a button that will display the subrarities when clicked. 
-            //MenuItem is the button, set data is the div that contains the button and the subrarities
-            //Content is the div that contains the subrarities
+        if(data[setName]) {
+          const Rarities = data[setName];
+          for(const RarityTuple of Rarities) {
+            const subRarity = RarityTuple.Subrarities;
 
-            const menuItem = document.createElement('button')
-            const setData = document.createElement('div')
-            const rarityData = document.createElement('p')
-            menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`
-            menuItem.style.padding = "5px";
-            menuItem.style.cursor = "pointer";
-            menuItem.style.backgroundColor = "#4CAF50";
-            menuItem.style.color = "white";
-            menuItem.style.border = "none";
-            menuItem.style.borderRadius = "4px";
-            menuItem.style.minWidth = "40%";
-            menuItem.style.width="100%";
+            // Create rarity section container
+            const raritySection = document.createElement('div');
+            raritySection.style.marginBottom = '15px';
+            
+            // Create rarity button with improved styling
+            const menuItem = document.createElement('button');
+            menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1/RarityTuple.Chances)*100).toFixed(2)} packs`;
+            menuItem.style.padding = '12px 20px';
+            menuItem.style.cursor = 'pointer';
+            menuItem.style.backgroundColor = '#4CAF50';
+            menuItem.style.color = 'white';
+            menuItem.style.border = 'none';
+            menuItem.style.borderRadius = '8px';
+            menuItem.style.width = '100%';
+            menuItem.style.fontSize = '16px';
+            menuItem.style.transition = 'background-color 0.3s';
             menuItem.setAttribute('set_name', setName);
             menuItem.setAttribute('rarity', RarityTuple.Rarity);
 
