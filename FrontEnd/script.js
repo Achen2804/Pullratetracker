@@ -1,7 +1,6 @@
-
 fetch(
   "https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api",
-  { method: "HEAD" }
+  { method: "HEAD" },
 )
   .then((response) => {
     console.log("Response Headers:", response.headers);
@@ -116,7 +115,7 @@ function getData(setName) {
             quantity.value = 0;
             quantity.id = "quantityBoxTracker";
             quantity.style.width = "20px";
-            quantity.addEventListener('input', () => {
+            quantity.addEventListener("input", () => {
               let currentQ = Math.floor(parseFloat(quantity.value));
               quantity.value = currentQ;
             });
@@ -156,11 +155,14 @@ function getData(setName) {
               image_gallery.appendChild(rarity_gallery);
               content.appendChild(image_gallery);
             }
-            content.style.display = content.style.display === "none" ? "block" : "none";
+            content.style.display =
+              content.style.display === "none" ? "block" : "none";
           });
 
-          menuItem.onmouseover = () => (menuItem.style.backgroundColor = "#45a049");
-          menuItem.onmouseout = () => (menuItem.style.backgroundColor = "#4CAF50");
+          menuItem.onmouseover = () =>
+            (menuItem.style.backgroundColor = "#45a049");
+          menuItem.onmouseout = () =>
+            (menuItem.style.backgroundColor = "#4CAF50");
           setData.appendChild(menuItem);
           setData.appendChild(content);
 
