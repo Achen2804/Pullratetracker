@@ -190,9 +190,38 @@
             content.style.marginTop = '10px';
             content.style.backgroundColor = "#f1f1f1";
             for(const SubRarityTuple of subRarity){
-            const subrarityData = document.createElement('p')
-            subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`
-            content.appendChild(subrarityData)
+              const subrarityContainer = document.createElement('div');
+              subrarityContainer.style.display = 'flex';
+              subrarityContainer.style.alignItems = 'center';
+              subrarityContainer.style.gap = '10px';
+              subrarityContainer.style.margin = '10px 0';
+              
+              const subrarityData = document.createElement('p');
+              subrarityData.style.margin = '0';
+              subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1/SubRarityTuple.Chances)*100).toFixed(2)} packs`;
+              
+              const toggleButton = document.createElement('button');
+              toggleButton.textContent = '+';
+              toggleButton.style.padding = '5px 10px';
+              toggleButton.style.backgroundColor = '#4CAF50';
+              toggleButton.style.color = 'white';
+              toggleButton.style.border = 'none';
+              toggleButton.style.borderRadius = '4px';
+              toggleButton.style.cursor = 'pointer';
+              
+              toggleButton.onclick = function() {
+                if(toggleButton.textContent === '+') {
+                  toggleButton.textContent = '-';
+                  toggleButton.style.backgroundColor = '#f44336';
+                } else {
+                  toggleButton.textContent = '+';
+                  toggleButton.style.backgroundColor = '#4CAF50';
+                }
+              };
+              
+              subrarityContainer.appendChild(subrarityData);
+              subrarityContainer.appendChild(toggleButton);
+              content.appendChild(subrarityContainer);
             }
             
             let isFirstClick = true;
