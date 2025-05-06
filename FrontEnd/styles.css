@@ -5,7 +5,33 @@ body {
   font-family: "Libre Baskerville", sans-serif;
   font-size: 70%;
 }
+.affiliateBox {
+  position: fixed;
+  top: 10px; /* Distance from the top of the page */
+  right: 10px; /* Distance from the right of the page */
+  width: 15vw; /* Responsive width */
+  max-width: 160px; 
+  height: 25vw;
+  max-height: 80px;
+  background-color: rgba(0, 0, 0, 0.8); /* Box color */
+  color: white; /* Text color */
+  padding: 10px; /* Inner padding */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Optional shadow */
+  border-radius: 5px; /* Optional rounded corners */
+}
+.box-label {
+  font-size: clamp(10px, 20%, 18px);
+}
 
+.box-image {
+  flex-grow: 1; /* Take up the remaining space */
+  width: 100%;
+  object-fit: contain; /* Keep image aspect ratio */
+}
+
+.fixed-box:hover {
+  background-color: rgba(0, 0, 0, 0.9); /* Darken the background on hover */
+}
 #fixed-bottom-item {
   position: fixed;
   bottom: 0;          
@@ -37,7 +63,7 @@ a {
 }
 
 .set-select {
-  width: 100%;
+  width: 80%;
   padding: 15px;
   font-size: 20px;
   border: 2px solid #04aa6e;
@@ -53,7 +79,7 @@ a {
 
 .adding-button {
   padding: 5px 10px;
-  background-color: #4caf50;
+  background-color: #0a6fbd;
   color: white;
   border: none;
   border-radius: 4px;

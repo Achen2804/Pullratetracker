@@ -7,7 +7,7 @@ fetch(
   })
   .catch((error) => console.error("Error:", error));
 
-let selectedItems = JSON.parse(sessionStorage.getItem("selectedItems")) || [];
+let selectedItems = JSON.parse(sessionStorage.getItem("selectedItems")) || {};
 
 fetch("pokedata.json")
   .then((response) => response.json())
@@ -45,8 +45,22 @@ async function getRarityGallery(set_name, rarity) {
   console.log("Type:", typeof images);
   return images;
 }
+function updateSelection(setName, rarity, value) {
+  console.log(setName, rarity, value);
 
+  // Ensure the set exists
+  if (!selectedItems[setName]) {
+    selectedItems[setName] = {};
+  }
+
+  // Update the rarity's value
+  selectedItems[setName][rarity] = value;
+
+  // Save to sessionStorage
+  sessionStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+}
 function getData(setName) {
+  
   fetch("pokedata.json")
     .then((response) => response.json())
     .then((data) => {
@@ -68,7 +82,13 @@ function getData(setName) {
           raritySection.style.marginBottom = "15px";
 
           const menuItem = document.createElement("button");
-          menuItem.innerHTML = `<Strong>${RarityTuple.Rarity}: </Strong> 1 in ${((1 / RarityTuple.Chances) * 100).toFixed(2)} packs`;
+          const menuContent = document.createElement("div");
+          menuContent.style.display = "flex";
+          menuContent.style.alignItems = "center";
+          menuContent.style.justifyContent = "space-between";
+          menuContent.style.width = "100%";
+          menuItem.innerHTML = ""; // clear existing content
+          menuItem.appendChild(menuContent);
           menuItem.style.padding = "12px 20px";
           menuItem.style.cursor = "pointer";
           menuItem.style.backgroundColor = "#4CAF50";
@@ -80,6 +100,54 @@ function getData(setName) {
           menuItem.style.transition = "background-color 0.3s";
           menuItem.setAttribute("set_name", setName);
           menuItem.setAttribute("rarity", RarityTuple.Rarity);
+          // Create text info for the rarity
+          const text = document.createElement("span");
+          text.innerHTML = `<strong>${RarityTuple.Rarity}: </strong> 1 in ${((1 / RarityTuple.Chances) * 100).toFixed(2)} packs`;
+
+          // Create add, quantity, and remove
+          const buttonGroup = document.createElement("div");
+          buttonGroup.style.display = "flex";
+          buttonGroup.style.alignItems = "center";
+          buttonGroup.style.gap = "5px";
+
+          const addButtonM = document.createElement("button");
+          addButtonM.textContent = "+";
+          addButtonM.onclick = (e) => {
+            e.stopPropagation(); // prevent menu toggle
+            quantityM.value = Math.floor(parseFloat(quantityM.value)) + 1;
+            updateSelection(setName, RarityTuple.Rarity, quantityM.value);
+          };
+          addButtonM.classList.add("adding-button")
+
+          const quantityM = document.createElement("input");
+            quantityM.type = "number";
+            quantityM.min = "0";
+            quantityM.value = "0";
+            quantityM.style.width = "30px";
+            quantityM.value = (selectedItems[setName] && selectedItems[setName][RarityTuple.Rarity]) || 0;
+            quantityM.addEventListener("input", () => {
+              quantityM.value = Math.floor(parseFloat(quantityM.value));
+              updateSelection(setName, RarityTuple.Rarity, quantityM.value);
+          });
+
+          const removeButtonM = document.createElement("button");
+          removeButtonM.textContent = "-";
+          removeButtonM.onclick = (e) => {
+            e.stopPropagation(); // prevent menu toggle
+              quantityM.value = Math.max(Math.floor(parseFloat(quantityM.value)) - 1, 0);
+            updateSelection(setName, RarityTuple.Rarity, quantityM.value);
+          };
+          removeButtonM.classList.add("removing-button")
+
+          buttonGroup.appendChild(addButtonM);
+          buttonGroup.appendChild(quantityM);
+          buttonGroup.appendChild(removeButtonM );
+
+          menuContent.appendChild(text);
+          menuContent.appendChild(buttonGroup);
+
+          // Add the built content to the menuItem
+          
 
           const setData = document.createElement("div");
 
@@ -88,6 +156,7 @@ function getData(setName) {
           content.style.paddingLeft = "20px";
           content.style.marginTop = "10px";
           content.style.backgroundColor = "#f1f1f1";
+          
           for (const SubRarityTuple of subRarity) {
             const subrarityContainer = document.createElement("div");
             subrarityContainer.style.display = "flex";
@@ -106,18 +175,20 @@ function getData(setName) {
               let currentQ = Math.floor(parseFloat(quantity.value));
               currentQ = currentQ + 1;
               quantity.value = currentQ;
+              updateSelection(setName, SubRarityTuple.Rarity, quantity.value);
             };
 
             const quantity = document.createElement("input");
             quantity.setAttribute("type", "number");
             quantity.setAttribute("min", "0");
             quantity.setAttribute("value", "0");
-            quantity.value = 0;
+            quantity.value = (selectedItems[setName] && selectedItems[setName][SubRarityTuple.Rarity]) || 0;
             quantity.id = "quantityBoxTracker";
             quantity.style.width = "20px";
             quantity.addEventListener("input", () => {
               let currentQ = Math.floor(parseFloat(quantity.value));
               quantity.value = currentQ;
+              updateSelection(setName, SubRarityTuple.Rarity, quantity.value);
             });
 
             const removeButton = document.createElement("button");
@@ -127,6 +198,7 @@ function getData(setName) {
               let currentQ = Math.floor(parseFloat(quantity.value));
               currentQ = Math.max(currentQ - 1, 0);
               quantity.value = currentQ;
+              updateSelection(setName, SubRarityTuple.Rarity, quantity.value);
             };
 
             subrarityContainer.appendChild(subrarityData);
