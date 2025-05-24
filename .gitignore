@@ -1,3 +1,4 @@
 .env
 secrets/
 tester.py
+QueryTester.py

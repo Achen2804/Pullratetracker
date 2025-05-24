@@ -1,651 +1,452 @@
 {
+    "Journey Together": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.29",
+            "Subrarities": [],
+            "SpecificRarity": 0.012658227848101266
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.54",
+            "Subrarities": [],
+            "SpecificRarity": 0.005952380952380952
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "8.50",
+            "Subrarities": [],
+            "SpecificRarity": 0.007751937984496124
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.16",
+            "Subrarities": [],
+            "SpecificRarity": 0.0019305019305019305
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "0.73",
+            "Subrarities": [],
+            "SpecificRarity": 0.0024330900243309003
+        }
+    ],
     "Prismatic Evolutions": [
         {
             "Rarity": "Pok\u00e9 Ball Foil",
             "Chances": "33.10",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0033112582781456954
         },
         {
             "Rarity": "Double Rare",
             "Chances": "16.51",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.009433962264150943
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "1.45",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006211180124223602
         },
         {
             "Rarity": "ACE SPEC Rare",
             "Chances": "4.68",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0078125
         },
         {
             "Rarity": "Master Ball Foil",
             "Chances": "4.92",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0007342143906020558
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "2.22",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0006944444444444445
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "0.56",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0011111111111111111
         }
     ],
     "Surging Sparks": [
         {
             "Rarity": "Double Rare",
             "Chances": "16.94",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.009433962264150943
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.74",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.003205128205128205
         },
         {
             "Rarity": "ACE SPEC Rare",
             "Chances": "5.03",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006289308176100629
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.67",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0033333333333333335
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.15",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0010416666666666667
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "0.53",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0008873114463176575
         }
     ],
     "Stellar Crown": [
         {
             "Rarity": "Double Rare",
             "Chances": "16.90",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.012048192771084338
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.75",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006134969325153374
         },
         {
             "Rarity": "ACE SPEC Rare",
             "Chances": "4.94",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.016666666666666666
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.79",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.005988023952095809
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.11",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.001851851851851852
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "0.73",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0024330900243309003
         }
     ],
     "Evolving Skies": [
         {
-            "Rarity": "Normal Pok\u00e9mon V",
+            "Rarity": "Normal Pokémon V",
             "Chances": "10.56",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.005882352941
         },
         {
-            "Rarity": "Normal Pok\u00e9mon VMAX",
-            "Chances": "5.60",
-            "Subrarities": []
+            "Rarity": "Normal Pokémon VMAX",
+            "Chances": "5.6",
+            "Subrarities": [],
+            "SpecificRarity": 0.003731343284557046
         },
         {
             "Rarity": "Full-Art",
             "Chances": "2.78",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0010288065843621399
         },
         {
-            "Rarity": "Alt-Art Pok\u00e9mon V",
+            "Rarity": "Alt-Art Pokémon V",
             "Chances": "1.10",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.000999000999
         },
         {
-            "Rarity": "Alt-Art Pok\u00e9mon VMAX",
+            "Rarity": "Alt-Art Pokémon VMAX",
             "Chances": "0.30",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0005015043135015043
         },
         {
             "Rarity": "Rainbow Rare",
             "Chances": "0.84",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0005279831045
         },
         {
             "Rarity": "Gold Rare",
             "Chances": "0.91",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.000761614623
         }
     ],
     "Twilight Masquerade": [
         {
             "Rarity": "Double Rare",
             "Chances": "16.93",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.012048192771084338
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.61",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0031446540880503146
         },
         {
             "Rarity": "ACE SPEC Rare",
             "Chances": "5.06",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.008403361344537815
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.73",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.003676470588235294
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.17",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0010626992561105207
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "0.68",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0011376564277588168
         }
     ],
     "Temporal Forces": [
         {
             "Rarity": "Double Rare",
             "Chances": "16.83",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.011235955056179775
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.67",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.003703703703703704
         },
         {
             "Rarity": "ACE SPEC Rare",
             "Chances": "5.00",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.007142857142857143
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.72",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0035087719298245615
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.17",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0011695906432748538
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "0.72",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0011961722488038277
         }
     ],
     "Paldean Fates": [
         {
             "Rarity": "Double Rare",
             "Chances": "15.89",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.015873015873015872
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.61",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.013157894736842105
         },
         {
             "Rarity": "Shiny Rare",
             "Chances": "25.44",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.00211864406779661
         },
         {
             "Rarity": "Shiny Ultra Rare",
             "Chances": "7.72",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0064516129032258064
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.22",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.023809523809523808
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.72",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.002150537634408602
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "1.61",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.002688172043010753
         }
     ],
     "Paradox Rift": [
         {
             "Rarity": "Double Rare",
             "Chances": "15.57",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0078125
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.64",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0023752969121140144
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.70",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0022624434389140274
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "2.11",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0014044943820224719
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "1.22",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.001736111111111111
         }
     ],
     "Obsidian Flames": [
         {
             "Rarity": "Double Rare",
             "Chances": "13.61",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006493506493506494
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.63",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0055248618784530384
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "7.60",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006329113924050633
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "3.13",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.005208333333333333
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "1.92",
-            "Subrarities": []
-        }
-    ],
-    "Paldea Evolved": [
-        {
-            "Rarity": "Double Rare",
-            "Chances": "13.72",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "6.64",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Illustration Rare",
-            "Chances": "7.70",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Special Illustration Rare",
-            "Chances": "3.17",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Hyper Rare",
-            "Chances": "1.76",
-            "Subrarities": []
-        }
-    ],
-    "Scarlet & Violet": [
-        {
-            "Rarity": "Double Rare",
-            "Chances": "13.76",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "6.57",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Illustration Rare",
-            "Chances": "7.67",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Special Illustration Rare",
-            "Chances": "3.15",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Hyper Rare",
-            "Chances": "1.85",
-            "Subrarities": []
-        }
-    ],
-    "Crown Zenith": [
-        {
-            "Rarity": "Galarian Gallery",
-            "Chances": "35.20",
-            "Subrarities": [
-                {
-                    "Rarity": "     Non-V Pok\u00e9mon",
-                    "Chances": "22.40"
-                },
-                {
-                    "Rarity": "     Pok\u00e9mon V or Trainer",
-                    "Chances": "12.00"
-                },
-                {
-                    "Rarity": "     Gold",
-                    "Chances": "0.80"
-                }
-            ]
-        },
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "20.50",
-            "Subrarities": [
-                {
-                    "Rarity": "     Normal Pok\u00e9mon V",
-                    "Chances": "12.35"
-                },
-                {
-                    "Rarity": "     Pok\u00e9mon VMAX or VSTAR",
-                    "Chances": "5.30"
-                },
-                {
-                    "Rarity": "     Texture Energy",
-                    "Chances": "1.90"
-                },
-                {
-                    "Rarity": "     Full Art Trainer",
-                    "Chances": "0.95"
-                }
-            ]
-        },
-        {
-            "Rarity": "Signature Trainer",
-            "Chances": "7.65",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Radiant Rare",
-            "Chances": "4.55",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Secret Rare",
-            "Chances": "0.75",
-            "Subrarities": []
-        }
-    ],
-    "Silver Tempest": [
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "18.98",
-            "Subrarities": [
-                {
-                    "Rarity": "     Normal Pok\u00e9mon V",
-                    "Chances": "11.55"
-                },
-                {
-                    "Rarity": "     Pok\u00e9mon VMAX or VSTAR",
-                    "Chances": "3.72"
-                },
-                {
-                    "Rarity": "     Full-Art Pok\u00e9mon V",
-                    "Chances": "2.10"
-                },
-                {
-                    "Rarity": "     Full-Art Trainer",
-                    "Chances": "1.01"
-                },
-                {
-                    "Rarity": "     Alt-Art Pok\u00e9mon V",
-                    "Chances": "0.60"
-                }
-            ]
-        },
-        {
-            "Rarity": "Trainer Gallery",
-            "Chances": "12.23",
-            "Subrarities": [
-                {
-                    "Rarity": "     Non-V Pok\u00e9mon",
-                    "Chances": "8.25"
-                },
-                {
-                    "Rarity": "     V, VMAX, or Trainer",
-                    "Chances": "3.08"
-                },
-                {
-                    "Rarity": "     Gold-and-Black VMAX",
-                    "Chances": "0.90"
-                }
-            ]
-        },
-        {
-            "Rarity": "Radiant Rare",
-            "Chances": "4.55",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Secret Rare",
-            "Chances": "2.20",
-            "Subrarities": [
-                {
-                    "Rarity": "     Rainbow Rare",
-                    "Chances": "1.26"
-                },
-                {
-                    "Rarity": "     Gold Rare",
-                    "Chances": "0.94"
-                }
-            ]
-        }
-    ],
-    "Lost Origin": [
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "19.95",
-            "Subrarities": [
-                {
-                    "Rarity": "     Normal Pok\u00e9mon V",
-                    "Chances": "11.63"
-                },
-                {
-                    "Rarity": "     Pok\u00e9mon VMAX or VSTAR",
-                    "Chances": "4.42"
-                },
-                {
-                    "Rarity": "     Full-Art Pok\u00e9mon V",
-                    "Chances": "1.98"
-                },
-                {
-                    "Rarity": "     Full-Art Trainer",
-                    "Chances": "1.42"
-                },
-                {
-                    "Rarity": "     Alt-Art Pok\u00e9mon V",
-                    "Chances": "0.50"
-                }
-            ]
-        },
-        {
-            "Rarity": "Trainer Gallery",
-            "Chances": "12.31",
-            "Subrarities": [
-                {
-                    "Rarity": "     Non-V Pok\u00e9mon",
-                    "Chances": "8.29"
-                },
-                {
-                    "Rarity": "     V, VMAX, or Trainer",
-                    "Chances": "3.17"
-                },
-                {
-                    "Rarity": "     Gold-and-Black VMAX",
-                    "Chances": "0.86"
-                }
-            ]
-        },
-        {
-            "Rarity": "Radiant Rare",
-            "Chances": "5.01",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Secret Rare",
-            "Chances": "2.05",
-            "Subrarities": [
-                {
-                    "Rarity": "     Rainbow Rare",
-                    "Chances": "1.28"
-                },
-                {
-                    "Rarity": "     Gold Rare",
-                    "Chances": "0.76"
-                }
-            ]
-        }
-    ],
-    "Astral Radiance": [
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "20.03",
-            "Subrarities": [
-                {
-                    "Rarity": "     Normal Pok\u00e9mon V",
-                    "Chances": "12.77"
-                },
-                {
-                    "Rarity": "     Pok\u00e9mon VMAX or VSTAR",
-                    "Chances": "3.47"
-                },
-                {
-                    "Rarity": "     Full-Art Pok\u00e9mon V",
-                    "Chances": "2.13"
-                },
-                {
-                    "Rarity": "     Full-Art Trainer",
-                    "Chances": "1.08"
-                },
-                {
-                    "Rarity": "     Alt-Art Pok\u00e9mon V",
-                    "Chances": "0.74"
-                }
-            ]
-        },
-        {
-            "Rarity": "Trainer Gallery",
-            "Chances": "12.58",
-            "Subrarities": [
-                {
-                    "Rarity": "     Non-V Pok\u00e9mon",
-                    "Chances": "8.48"
-                },
-                {
-                    "Rarity": "     V, VMAX, or Trainer",
-                    "Chances": "4.10"
-                }
-            ]
-        },
-        {
-            "Rarity": "Secret Rare",
-            "Chances": "2.05",
-            "Subrarities": [
-                {
-                    "Rarity": "     Rainbow Rare",
-                    "Chances": "1.28"
-                },
-                {
-                    "Rarity": "     Gold Rare",
-                    "Chances": "0.76"
-                }
-            ]
-        }
-    ],
-    "Journey Together": [
-        {
-            "Rarity": "Double Rare",
-            "Chances": "20.29",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Ultra Rare",
-            "Chances": "6.54",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Illustration Rare",
-            "Chances": "8.50",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Special Illustration Rare",
-            "Chances": "1.16",
-            "Subrarities": []
-        },
-        {
-            "Rarity": "Hyper Rare",
-            "Chances": "0.73",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.00641025641025641
         }
     ],
     "Scarlet & Violet\u2014151": [
         {
             "Rarity": "Foil Energy",
             "Chances": "24.83",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.03125
         },
         {
             "Rarity": "Double Rare",
             "Chances": "13.28",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.011111111111111112
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "6.44",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.004032258064516129
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "8.50",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.005319148936170213
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "3.11",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.0044444444444444444
         },
         {
             "Rarity": "Hyper Rare",
             "Chances": "1.94",
-            "Subrarities": []
+            "Subrarities": [],
+            "SpecificRarity": 0.006493506493506494
+        }
+    ],
+    "Paldea Evolved": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "13.72",
+            "Subrarities": [],
+            "SpecificRarity": 0.008064516129032258
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.64",
+            "Subrarities": [],
+            "SpecificRarity": 0.0025575447570332483
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "7.70",
+            "Subrarities": [],
+            "SpecificRarity": 0.002136752136752137
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "3.17",
+            "Subrarities": [],
+            "SpecificRarity": 0.0021141649048625794
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "1.76",
+            "Subrarities": [],
+            "SpecificRarity": 0.001953125
         }
     ]
 }

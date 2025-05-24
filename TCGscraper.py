@@ -42,19 +42,69 @@ def get_articles():
 def get_pullrates(args):
     setName, source = args
     op = Options()
+    print(setName)
     op.add_argument('--headless')  # Run in headless mode
     op.add_argument('--disable-gpu')  
     driver = webdriver.Chrome(options=op)
     driver.implicitly_wait(5)
     driver.get(source)
+    try:
+        articleBody = driver.find_element(By.CLASS_NAME, "article-body")
+    except Exception as e:
+
+        print(f"Error: {e}")
+        driver.quit()
+        return (setName, [])
+    
     content_container = driver.find_element(By.XPATH, "//table[.//th[contains(text(), 'Rarity') or contains(text(), 'Card Type') or contains(text(), 'Subrarity')]]")
     table_body = content_container.find_element(By.TAG_NAME,"tbody")
-    rows = table_body.find_elements(By.TAG_NAME, "tr")
+    
     data = []
     supertype = None
     subtype = None
-    # Iterate through each row to get the cells (td elements)
-    print(len(rows))
+    
+    specificData = {}
+    Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "li")
+    if(len(Rarity_Lists) == 0):
+        Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "table")
+        for table in Rarity_Lists:
+            rows = table.find_elements(By.TAG_NAME, "tr")
+            cells = rows[2].find_elements(By.TAG_NAME, "td")
+            if len(cells) >= 3:
+                if "Specific" in cells[0].text:
+                    match = re.search(r"Specific (.*) Card",cells[0].text)
+                    subrarity = match.group(1)
+                    match = re.search(r"(\d+) in (\d+) .*",cells[2].text)
+                    if match:
+                        if(subrarity == "ACE SPEC"):
+                            subrarity = "ACE SPEC Rare"
+                        first = match.group(1)
+                        second = match.group(2)
+                        percent = int(first)/int(second)
+                        specificData[subrarity] = percent
+
+
+    else:
+        Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "li")
+        h2_elements = articleBody.find_elements(By.TAG_NAME, "h2")
+        h3_elements = articleBody.find_elements(By.TAG_NAME, "h3")
+        Rarities = h2_elements + h3_elements
+        index = 0
+        for rarityData in Rarity_Lists:
+            rarity = Rarities[index]
+            cleaned_text = re.sub(r"\(\d+\s*in\s*\d+\)", "", rarity.text)
+            if "specific" in rarityData.text:
+                index += 1
+                match = re.search(r".+: (\d+) in (\d+)",rarityData.text)
+                if match:
+                    first = match.group(1)
+                    second = match.group(2)
+                    percent = int(first)/int(second)
+                    percent = round(percent*100,2)
+                    if(cleaned_text == "Rainbow Rare"):
+                        cleaned_text = "Gold Rare"
+                    specificData[cleaned_text] = percent
+    rows = table_body.find_elements(By.TAG_NAME, "tr")
     for row in rows:
         # Get all cells (td elements) in the row
         cells = row.find_elements(By.TAG_NAME, "td")
@@ -66,30 +116,26 @@ def get_pullrates(args):
 
         # Extract text from each cell and print it
         rarity = Rarity_cell.text
+        print(f"Rarity: {rarity}, {setName}")
         chance = cells[1].text
         match = re.search(r"(\d+\.?\d*)(?=%)",chance)
         if match:
             percent=match.group()
             if (bolding):
                 supertype = rarity
-                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[]})
+                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':specificData[rarity]})
             elif(supertype):
-                data[-1]['Subrarities'].append({'Rarity':rarity,'Chances':percent}) 
+                data[-1]['Subrarities'].append({'Rarity':rarity,'Chances':percent,'SpecificRarity':specificData[rarity]}) 
             else:
-                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[]})
-        
-        
-        #print(data)
+                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':specificData[rarity]})
     driver.quit()
     #print(data)
     return (setName,data) 
 
 def upload_image_data(setName):
 
-    ref = db.reference('Sets')
     #print(ref.get())
-    cardTable = db.reference('Cards')
-    setTable = db.reference('Sets')
+    setTable = db.reference('Sets2')
     relevantSet = setTable.child(setName)
     cards = Card.where(q=f'set.name:"{setName}"')
     updates = {}
@@ -98,15 +144,13 @@ def upload_image_data(setName):
     for card in cards:
         if card.rarity is not None:
             # Update the relevant set with card data
-            set_path = f"/Sets/{setName}/{card.rarity}/{card.id}"
-            updates[set_path] = {
-                'name': card.name,
-                'image': card.images.large,
-            }
+            if card.rarity not in updates:
+                updates[card.rarity] = []
+            updates[card.rarity].append(card.images.large)
     
     # Perform the update in one go
     if updates:
-        db.reference().update(updates)
+        setTable.child(setName).update(updates)
     return
 
 if __name__ == "__main__":
@@ -125,20 +169,25 @@ if __name__ == "__main__":
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
     })
-    with open('./FrontEnd/pokedata.json', 'r') as file:
-        currentdata = json.load(file)
+    try:
+        with open('./FrontEnd/pokedata.json', 'r') as file:
+            currentdata = json.load(file)
+    except FileNotFoundError:
+        print("File not found. Creating a new one.")
+        currentdata = {}
     currentSets = currentdata.keys()
     dataToParse = {key: value for key, value in dataCollected.items() if key not in currentSets}
     dataToParse = list(dataToParse.items())
     #print(dataToParse)
-    for setName in currentSets:
-        print(setName)
-        upload_image_data(setName)
     if(len(dataToParse) == 0):
         print("No new sets to parse")
         exit(0)
-    with Pool(processes=len(dataToParse)) as pool:
-        data = pool.map(get_pullrates, dataToParse)
+    data = []
+    try:
+        for args in dataToParse:
+            data.append(get_pullrates(args))
+    except Exception as e:
+        print(f"Error: {e}")
     results_dict= {}
     #print(data)
     for set,numbers in data:
@@ -146,8 +195,6 @@ if __name__ == "__main__":
     currentdata.update(results_dict)
     with open("./FrontEnd/pokedata.json", "w+") as json_file:
         json.dump(currentdata, json_file, indent=4)
-
-
 
     """
     
