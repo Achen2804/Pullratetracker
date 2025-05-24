@@ -153,13 +153,13 @@
     ],
     "Evolving Skies": [
         {
-            "Rarity": "Normal Pokémon V",
+            "Rarity": "Normal Pok\u00c3\u00a9mon V",
             "Chances": "10.56",
             "Subrarities": [],
             "SpecificRarity": 0.005882352941
         },
         {
-            "Rarity": "Normal Pokémon VMAX",
+            "Rarity": "Normal Pok\u00c3\u00a9mon VMAX",
             "Chances": "5.6",
             "Subrarities": [],
             "SpecificRarity": 0.003731343284557046
@@ -168,16 +168,16 @@
             "Rarity": "Full-Art",
             "Chances": "2.78",
             "Subrarities": [],
-            "SpecificRarity": 0.0010288065843621399
+            "SpecificRarity": 0.00102880658436214
         },
         {
-            "Rarity": "Alt-Art Pokémon V",
+            "Rarity": "Alt-Art Pok\u00c3\u00a9mon V",
             "Chances": "1.10",
             "Subrarities": [],
             "SpecificRarity": 0.000999000999
         },
         {
-            "Rarity": "Alt-Art Pokémon VMAX",
+            "Rarity": "Alt-Art Pok\u00c3\u00a9mon VMAX",
             "Chances": "0.30",
             "Subrarities": [],
             "SpecificRarity": 0.0005015043135015043
@@ -447,6 +447,333 @@
             "Chances": "1.76",
             "Subrarities": [],
             "SpecificRarity": 0.001953125
+        }
+    ],
+    "Scarlet & Violet": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "13.76",
+            "Subrarities": [],
+            "SpecificRarity": 0.011494252873563218
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.57",
+            "Subrarities": [],
+            "SpecificRarity": 0.003236245954692557
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "7.67",
+            "Subrarities": [],
+            "SpecificRarity": 0.003194888178913738
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "3.15",
+            "Subrarities": [],
+            "SpecificRarity": 0.0031446540880503146
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "1.85",
+            "Subrarities": [],
+            "SpecificRarity": 0.0030864197530864196
+        }
+    ],
+    "Crown Zenith": [
+        {
+            "Rarity": "Galarian Gallery",
+            "Chances": "35.20",
+            "Subrarities": [
+                {
+                    "Rarity": "Non-V Pok\u00e9mon",
+                    "Chances": "22.40",
+                    "SpecificRarity": 0.005988023952095809
+                },
+                {
+                    "Rarity": "Pok\u00e9mon V or Trainer",
+                    "Chances": "12.00",
+                    "SpecificRarity": 0.003436426116838488
+                },
+                {
+                    "Rarity": "Gold",
+                    "Chances": "0.80",
+                    "SpecificRarity": 0.0016666666666666668
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "20.50",
+            "Subrarities": [
+                {
+                    "Rarity": "Normal Pok\u00e9mon V",
+                    "Chances": "12.35",
+                    "SpecificRarity": 0.007042253521126761
+                },
+                {
+                    "Rarity": "Normal Pok\u00e9mon VMAX or VSTAR",
+                    "Chances": "5.30",
+                    "SpecificRarity": 0.003663003663003663
+                },
+                {
+                    "Rarity": "Texture Energy",
+                    "Chances": "1.90",
+                    "SpecificRarity": 0.0016611295681063123
+                },
+                {
+                    "Rarity": "Full Art Trainer",
+                    "Chances": "0.95",
+                    "SpecificRarity": 0.0016313213703099511
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Signature Trainer",
+            "Chances": "7.65",
+            "Subrarities": [],
+            "SpecificRarity": 0.0026595744680851063
+        },
+        {
+            "Rarity": "Radiant Rare",
+            "Chances": "4.55",
+            "Subrarities": [],
+            "SpecificRarity": 0.014492753623188406
+        },
+        {
+            "Rarity": "Secret Rare",
+            "Chances": "0.75",
+            "Subrarities": [],
+            "SpecificRarity": ""
+        }
+    ],
+    "Silver Tempest": [
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "18.98",
+            "Subrarities": [
+                {
+                    "Rarity": "Normal Pok\u00e9mon V",
+                    "Chances": "11.55",
+                    "SpecificRarity": 0.007633587786259542
+                },
+                {
+                    "Rarity": "Normal Pok\u00e9mon VMAX or VSTAR",
+                    "Chances": "3.72",
+                    "SpecificRarity": 0.005291005291005291
+                },
+                {
+                    "Rarity": "Full-Art Pok\u00e9mon V",
+                    "Chances": "2.10",
+                    "SpecificRarity": 0.0014814814814814814
+                },
+                {
+                    "Rarity": "Full-Art Trainer",
+                    "Chances": "1.01",
+                    "SpecificRarity": 0.0011547344110854503
+                },
+                {
+                    "Rarity": "Alt-Art Pok\u00e9mon V",
+                    "Chances": "0.60",
+                    "SpecificRarity": 0.001483679525222552
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Trainer Gallery",
+            "Chances": "12.23",
+            "Subrarities": [
+                {
+                    "Rarity": "Non-V Pok\u00e9mon",
+                    "Chances": "8.25",
+                    "SpecificRarity": 0.007462686567164179
+                },
+                {
+                    "Rarity": "V, VMAX, or Trainer",
+                    "Chances": "3.08",
+                    "SpecificRarity": 0.0017761989342806395
+                },
+                {
+                    "Rarity": "Gold-and-Black Pok\u00e9mon VMAX",
+                    "Chances": "0.90",
+                    "SpecificRarity": 0.0043859649122807015
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Radiant Rare",
+            "Chances": "4.55",
+            "Subrarities": [],
+            "SpecificRarity": 0.015625
+        },
+        {
+            "Rarity": "Secret Rare",
+            "Chances": "2.20",
+            "Subrarities": [
+                {
+                    "Rarity": "Rainbow Rare",
+                    "Chances": "1.26",
+                    "SpecificRarity": 0.0008389261744966443
+                },
+                {
+                    "Rarity": "Gold Rare",
+                    "Chances": "0.94",
+                    "SpecificRarity": 0.0015337423312883436
+                }
+            ],
+            "SpecificRarity": ""
+        }
+    ],
+    "Lost Origin": [
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "19.95",
+            "Subrarities": [
+                {
+                    "Rarity": "Normal Pok\u00e9mon V",
+                    "Chances": "11.63",
+                    "SpecificRarity": 0.009708737864077669
+                },
+                {
+                    "Rarity": "Normal Pok\u00e9mon VMAX or VSTAR",
+                    "Chances": "4.42",
+                    "SpecificRarity": 0.006329113924050633
+                },
+                {
+                    "Rarity": "Full-Art Pok\u00e9mon V",
+                    "Chances": "1.98",
+                    "SpecificRarity": 0.0015220700152207
+                },
+                {
+                    "Rarity": "Full-Art Trainer",
+                    "Chances": "1.42",
+                    "SpecificRarity": 0.0017793594306049821
+                },
+                {
+                    "Rarity": "Alt-Art Pok\u00e9mon V",
+                    "Chances": "0.50",
+                    "SpecificRarity": 0.0012437810945273632
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Trainer Gallery",
+            "Chances": "12.31",
+            "Subrarities": [
+                {
+                    "Rarity": "Non-V Pok\u00e9mon",
+                    "Chances": "8.29",
+                    "SpecificRarity": 0.007518796992481203
+                },
+                {
+                    "Rarity": "V, VMAX, or Trainer",
+                    "Chances": "3.17",
+                    "SpecificRarity": 0.0018656716417910447
+                },
+                {
+                    "Rarity": "Gold-and-Black Pok\u00e9mon VMAX",
+                    "Chances": "0.86",
+                    "SpecificRarity": 0.004273504273504274
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Radiant Rare",
+            "Chances": "5.01",
+            "Subrarities": [],
+            "SpecificRarity": 0.016666666666666666
+        },
+        {
+            "Rarity": "Secret Rare",
+            "Chances": "2.05",
+            "Subrarities": [
+                {
+                    "Rarity": "Rainbow Rare",
+                    "Chances": "1.28",
+                    "SpecificRarity": 0.0009569377990430622
+                },
+                {
+                    "Rarity": "Gold Rare",
+                    "Chances": "0.76",
+                    "SpecificRarity": 0.001466275659824047
+                }
+            ],
+            "SpecificRarity": ""
+        }
+    ],
+    "Astral Radiance": [
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "20.03",
+            "Subrarities": [
+                {
+                    "Rarity": "Normal Pok\u00e9mon V",
+                    "Chances": "12.77",
+                    "SpecificRarity": 0.006578947368421052
+                },
+                {
+                    "Rarity": "Normal Pok\u00e9mon VMAX or VSTAR",
+                    "Chances": "3.47",
+                    "SpecificRarity": 0.003861003861003861
+                },
+                {
+                    "Rarity": "Full-Art Pok\u00e9mon V",
+                    "Chances": "2.13",
+                    "SpecificRarity": 0.0014204545454545455
+                },
+                {
+                    "Rarity": "Full-Art Trainer",
+                    "Chances": "1.08",
+                    "SpecificRarity": 0.0011961722488038277
+                },
+                {
+                    "Rarity": "Alt-Art Pok\u00e9mon V",
+                    "Chances": "0.74",
+                    "SpecificRarity": 0.0012345679012345679
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Trainer Gallery",
+            "Chances": "12.58",
+            "Subrarities": [
+                {
+                    "Rarity": "Non-V Pok\u00e9mon",
+                    "Chances": "8.48",
+                    "SpecificRarity": 0.0070921985815602835
+                },
+                {
+                    "Rarity": "V, VMAX, or Trainer",
+                    "Chances": "4.10",
+                    "SpecificRarity": 0.002564102564102564
+                }
+            ],
+            "SpecificRarity": ""
+        },
+        {
+            "Rarity": "Secret Rare",
+            "Chances": "2.05",
+            "Subrarities": [
+                {
+                    "Rarity": "Rainbow Rare",
+                    "Chances": "1.28",
+                    "SpecificRarity": 0.0007137758743754461
+                },
+                {
+                    "Rarity": "Gold Rare",
+                    "Chances": "0.76",
+                    "SpecificRarity": 0.0008488964346349745
+                }
+            ],
+            "SpecificRarity": ""
         }
     ]
 }

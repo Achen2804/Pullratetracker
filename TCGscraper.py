@@ -18,7 +18,7 @@ def get_articles():
     op.add_argument('--headless')  # Run in headless mode
     op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
     driver = webdriver.Chrome(options=op)
-    url = "https://infinite.tcgplayer.com/search?q=pull%20rates&p=1&contentMode=article&game=all%20games&ac=1"
+    url = "https://www.tcgplayer.com/search/articles?q=pull+rates&productLineName=pokemon&page=1"
     driver.implicitly_wait(10)
 
     driver.get(url)
@@ -36,6 +36,7 @@ def get_articles():
         if match:
             setName = match.group(1)
             set_to_link[setName] = link
+            print(f"Set Name: {setName}")
     driver.quit()
     return set_to_link
 
@@ -61,49 +62,52 @@ def get_pullrates(args):
     
     data = []
     supertype = None
-    subtype = None
+    subtype = None    
     
-    specificData = {}
-    Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "li")
-    if(len(Rarity_Lists) == 0):
-        Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "table")
-        for table in Rarity_Lists:
-            rows = table.find_elements(By.TAG_NAME, "tr")
-            cells = rows[2].find_elements(By.TAG_NAME, "td")
-            if len(cells) >= 3:
-                if "Specific" in cells[0].text:
-                    match = re.search(r"Specific (.*) Card",cells[0].text)
-                    subrarity = match.group(1)
-                    match = re.search(r"(\d+) in (\d+) .*",cells[2].text)
-                    if match:
-                        if(subrarity == "ACE SPEC"):
-                            subrarity = "ACE SPEC Rare"
-                        first = match.group(1)
-                        second = match.group(2)
-                        percent = int(first)/int(second)
-                        specificData[subrarity] = percent
+    pattern = re.compile(r".+specific.+\d+\s*in\s*\d+", re.IGNORECASE)
+    Rarity_Lists = articleBody.find_elements(By.XPATH, "h3 | h2")
+    Entries = {}
+    translator = {
+        'Pokémon V': 'Normal Pokémon V',
+        'Pokémon VMAX or VSTAR': 'Normal Pokémon VMAX or VSTAR',
+        'Pokémon V, Pokémon VMAX, or Trainer': 'V, VMAX, or Trainer',
+        'Gold-and-Black VMAX': 'Gold-and-Black Pokémon VMAX',
+        'Gold-and-Black VSTAR': 'Gold-and-Black Pokémon VSTAR',
+    }
+    for i, rarity in enumerate(Rarity_Lists):
+        
+        next_rarity = Rarity_Lists[i + 1] if i + 1 < len(Rarity_Lists) else None
+        current_element = rarity
+        val = rarity.text.strip()
+        rarityText = re.sub(r"\(\d+\s*in\s*\d+\)$", "", val).strip()
+        if rarityText in translator:
+            rarityText = translator[rarityText]
 
-
-    else:
-        Rarity_Lists = articleBody.find_elements(By.TAG_NAME, "li")
-        h2_elements = articleBody.find_elements(By.TAG_NAME, "h2")
-        h3_elements = articleBody.find_elements(By.TAG_NAME, "h3")
-        Rarities = h2_elements + h3_elements
-        index = 0
-        for rarityData in Rarity_Lists:
-            rarity = Rarities[index]
-            cleaned_text = re.sub(r"\(\d+\s*in\s*\d+\)", "", rarity.text)
-            if "specific" in rarityData.text:
-                index += 1
-                match = re.search(r".+: (\d+) in (\d+)",rarityData.text)
-                if match:
-                    first = match.group(1)
-                    second = match.group(2)
-                    percent = int(first)/int(second)
-                    percent = round(percent*100,2)
-                    if(cleaned_text == "Rainbow Rare"):
-                        cleaned_text = "Gold Rare"
-                    specificData[cleaned_text] = percent
+            
+        Entries[rarityText] = ''
+        while (current_element and current_element != next_rarity):
+            try:
+                current_element = current_element.find_element(By.XPATH, "following-sibling::*[1]")
+            except:
+                break
+            
+            if current_element.tag_name == 'ul' or current_element.tag_name == 'ol':
+                list_items = current_element.find_elements(By.TAG_NAME, "li")
+                for item in list_items:
+                    entryText = item.text
+                    if 'specific' in entryText:
+                        percentage = re.search(r'.*(\d+)\s*in\s*(\d+).*', entryText)
+                        if percentage:
+                            first = percentage.group(1)
+                            second = percentage.group(2)
+                            Entries[rarityText] = int(first)/int(second)
+            if current_element.tag_name == 'table':
+                rows = current_element.find_elements(By.TAG_NAME, "tr")
+                for row in rows:
+                    rowText = row.text
+                    if 'Specific' in rowText:
+                        Entries[rarityText] = (rowText)
+    print(Entries)
     rows = table_body.find_elements(By.TAG_NAME, "tr")
     for row in rows:
         # Get all cells (td elements) in the row
@@ -116,25 +120,32 @@ def get_pullrates(args):
 
         # Extract text from each cell and print it
         rarity = Rarity_cell.text
-        print(f"Rarity: {rarity}, {setName}")
+        rarity = rarity.strip()
+        if rarity in translator:
+            rarity = translator[rarity]
         chance = cells[1].text
         match = re.search(r"(\d+\.?\d*)(?=%)",chance)
         if match:
             percent=match.group()
-            if (bolding):
-                supertype = rarity
-                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':specificData[rarity]})
-            elif(supertype):
-                data[-1]['Subrarities'].append({'Rarity':rarity,'Chances':percent,'SpecificRarity':specificData[rarity]}) 
-            else:
-                data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':specificData[rarity]})
+            try:
+                percent=match.group()
+                if (bolding):
+                    supertype = rarity
+                    data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':Entries[rarity]})
+                elif(supertype):
+                    data[-1]['Subrarities'].append({'Rarity':rarity,'Chances':percent,'SpecificRarity':Entries[rarity]}) 
+                else:
+                    data.append({'Rarity':rarity,'Chances':percent,'Subrarities':[],'SpecificRarity':Entries[rarity]})
+            except Exception as e:
+                print(f"Error: {e}")
+                data.append({'Rarity':rarity,'Chances':chance,'Subrarities':[],'SpecificRarity':"Error"})
+                continue
     driver.quit()
     #print(data)
     return (setName,data) 
 
 def upload_image_data(setName):
 
-    #print(ref.get())
     setTable = db.reference('Sets2')
     relevantSet = setTable.child(setName)
     cards = Card.where(q=f'set.name:"{setName}"')
@@ -156,8 +167,6 @@ def upload_image_data(setName):
 if __name__ == "__main__":
     dataCollected = get_articles()
     processes = []
-    #get_pullrates(dataToParse[0])
-    #print(dataCollected)
     load_dotenv()
     API_KEY = os.getenv("POKEMON_API_KEY")
     RestClient.configure(API_KEY)
@@ -181,15 +190,15 @@ if __name__ == "__main__":
     #print(dataToParse)
     if(len(dataToParse) == 0):
         print("No new sets to parse")
-        exit(0)
     data = []
-    try:
-        for args in dataToParse:
-            data.append(get_pullrates(args))
-    except Exception as e:
-        print(f"Error: {e}")
+    for args in dataToParse:
+        data.append(get_pullrates(args))
+        try:
+            test = 0
+        except Exception as e:
+            print(f"Error: {e}")
     results_dict= {}
-    #print(data)
+    print(data)
     for set,numbers in data:
         results_dict[set] = numbers
     currentdata.update(results_dict)
