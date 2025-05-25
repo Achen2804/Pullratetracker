@@ -24,30 +24,20 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
 })
 def process_request(set_name, rarity):
-    
-    
-    set_ref = db.reference(f'/Sets/{set_name}/{rarity}')
+    set_ref = db.reference(f'/Sets2/{set_name}/{rarity}')
     images_urls = []
     data_snapshot = set_ref.get()
     if data_snapshot is not None:
         print("We have a set")
-        
-        for card_id in data_snapshot:
-            card_data = data_snapshot.get(card_id).get('image')
-            if card_data:
-                images_urls.append(card_data)
+        return data_snapshot
     else:
         words = rarity.split()  
         reverse = "Rare " + " ".join(words[:-1])
-        set_ref = db.reference(f'/Sets/{set_name}/{reverse}')
+        set_ref = db.reference(f'/Sets2/{set_name}/{reverse}')
         data_snapshot = set_ref.get()
         if data_snapshot is not None:
             print("We have a set")
-            
-            for card_id in data_snapshot:
-                card_data = data_snapshot.get(card_id).get('image')
-                if card_data:
-                    images_urls.append(card_data)
+            return data_snapshot
         else:
             print("No data found for this set.")
     return images_urls
