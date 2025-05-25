@@ -153,13 +153,13 @@
     ],
     "Evolving Skies": [
         {
-            "Rarity": "Normal Pok\u00c3\u00a9mon V",
+            "Rarity": "Normal Pok\u00e9mon V",
             "Chances": "10.56",
             "Subrarities": [],
             "SpecificRarity": 0.005882352941
         },
         {
-            "Rarity": "Normal Pok\u00c3\u00a9mon VMAX",
+            "Rarity": "Normal Pok\u00e9mon VMAX",
             "Chances": "5.6",
             "Subrarities": [],
             "SpecificRarity": 0.003731343284557046
@@ -171,13 +171,13 @@
             "SpecificRarity": 0.00102880658436214
         },
         {
-            "Rarity": "Alt-Art Pok\u00c3\u00a9mon V",
+            "Rarity": "Alt-Art Pok\u00e9mon V",
             "Chances": "1.10",
             "Subrarities": [],
             "SpecificRarity": 0.000999000999
         },
         {
-            "Rarity": "Alt-Art Pok\u00c3\u00a9mon VMAX",
+            "Rarity": "Alt-Art Pok\u00e9mon VMAX",
             "Chances": "0.30",
             "Subrarities": [],
             "SpecificRarity": 0.0005015043135015043
