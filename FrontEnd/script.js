@@ -86,7 +86,7 @@ function updateSelection(setName, rarity, value,specificOdds) {
   sessionStorage.setItem("selectedItems", JSON.stringify(selectedItems));
 }
 function getData(setName) {
-  
+  sessionStorage.setItem("currentSetName", setName);
   fetch("pokedata.json")
     .then((response) => response.json())
     .then((data) => {
@@ -103,7 +103,7 @@ function getData(setName) {
         const Rarities = data[setName];
         for (const RarityTuple of Rarities) {
           const subRarity = RarityTuple.Subrarities;
-          const specificOdds = RarityTuple.SpecificRarity;
+          const specificOddsRarity = RarityTuple.SpecificRarity;
           const raritySection = document.createElement("div");
           raritySection.style.marginBottom = "15px";
 
@@ -130,29 +130,34 @@ function getData(setName) {
           text.innerHTML = `<strong>${RarityTuple.Rarity}: </strong> 1 in ${((1 / RarityTuple.Chances) * 100).toFixed(2)} packs`;
 
           // Create add, quantity, and remove
+          
+          const genericOddsRarity = RarityTuple.Chances / 100;
+          const count = Math.round(genericOddsRarity/specificOddsRarity);
+          console.log(RarityTuple.Rarity, count);
           const buttonGroup = document.createElement("div");
           buttonGroup.style.display = "flex";
           buttonGroup.style.alignItems = "center";
           buttonGroup.style.gap = "5px";
 
           const addButtonM = document.createElement("button");
+          addButtonM.classList.add("adding-button")
           addButtonM.textContent = "+";
           addButtonM.onclick = (e) => {
             e.stopPropagation(); // prevent menu toggle
-            quantityM.value = Math.floor(parseFloat(quantityM.value)) + 1;
-            updateSelection(setName, RarityTuple.Rarity, quantityM.value,specificOdds);
+            quantityM.value = Math.min(Math.floor(parseFloat(quantityM.value)) + 1,count);
+            updateSelection(setName, RarityTuple.Rarity, quantityM.value, specificOddsRarity);
           };
-          addButtonM.classList.add("adding-button")
-
+          
           const quantityM = document.createElement("input");
             quantityM.type = "number";
             quantityM.min = "0";
             quantityM.value = "0";
+            quantityM.max = count.toString();
             quantityM.style.width = "30px";
             quantityM.value = selectedItems[setName]?.[RarityTuple.Rarity]?.Quantity || 0;
             quantityM.addEventListener("input", () => {
               quantityM.value = Math.floor(parseFloat(quantityM.value));
-              updateSelection(setName, RarityTuple.Rarity, quantityM.value,specificOdds);
+              updateSelection(setName, RarityTuple.Rarity, quantityM.value,specificOddsRarity);
           });
 
           const removeButtonM = document.createElement("button");
@@ -160,7 +165,7 @@ function getData(setName) {
           removeButtonM.onclick = (e) => {
             e.stopPropagation(); // prevent menu toggle
               quantityM.value = Math.max(Math.floor(parseFloat(quantityM.value)) - 1, 0);
-            updateSelection(setName, RarityTuple.Rarity, quantityM.value, specificOdds);
+            updateSelection(setName, RarityTuple.Rarity, quantityM.value, specificOddsRarity);
           };
           removeButtonM.classList.add("removing-button")
 
@@ -192,20 +197,23 @@ function getData(setName) {
             const subrarityData = document.createElement("p");
             subrarityData.style.margin = "0";
             subrarityData.innerHTML = `<Strong>${SubRarityTuple.Rarity}: </Strong> 1 in ${((1 / SubRarityTuple.Chances) * 100).toFixed(2)} packs`;
-
+            const specificOdds = SubRarityTuple.SpecificRarity
+            const genericOdds = SubRarityTuple.Chances / 100
+            const count = Math.round(genericOdds/specificOdds)
             const addButton = document.createElement("button");
             addButton.textContent = "+";
             addButton.classList.add("adding-button");
             addButton.onclick = function () {
               let currentQ = Math.floor(parseFloat(quantity.value));
-              currentQ = currentQ + 1;
+              currentQ = Math.min(currentQ + 1, count);
               quantity.value = currentQ;
               updateSelection(setName, SubRarityTuple.Rarity, quantity.value,specificOdds);
             };
-
+            
             const quantity = document.createElement("input");
             quantity.setAttribute("type", "number");
             quantity.setAttribute("min", "0");
+            quantity.setAttribute("max", count.toString());
             quantity.setAttribute("value", "0");
             quantity.value = (selectedItems[setName] && selectedItems[setName][SubRarityTuple.Rarity]) || 0;
             quantity.id = "quantityBoxTracker";
@@ -268,4 +276,27 @@ function getData(setName) {
       }
     })
     .catch((error) => console.error("Error loading JSON:", error));
+}
+
+function calculateOdds(){
+  const currentSetName = sessionStorage.getItem("currentSetName");
+  const selectedItems = JSON.parse(sessionStorage.getItem("selectedItems")) || {}; 
+  const relevantItems = selectedItems[currentSetName]
+  console.log(relevantItems)
+  let p = 0;
+  for (const [rarity, data] of Object.entries(relevantItems)){
+    const Quantity = data.Probability
+    const Odds = data.Quantity
+    p += Quantity*Odds
+  }
+  console.log(p)
+  console.log('Begin')
+  const odds = (1/(p)).toFixed(2);
+  console.log(odds)
+  console.log("End")
+  return odds;
+}
+function displayChances(){
+  const box = document.getElementById("probability-box")
+  box.textContent = calculateOdds();
 }
