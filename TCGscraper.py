@@ -10,7 +10,6 @@ from firebase_admin import db
 from dotenv import load_dotenv
 import os
 from pokemontcgsdk import Card
-from pokemontcgsdk import Set
 from pokemontcgsdk import RestClient
 def get_articles():
 # Headless mode (optional)
@@ -192,9 +191,10 @@ if __name__ == "__main__":
         print("No new sets to parse")
     data = []
     for args in dataToParse:
-        data.append(get_pullrates(args))
+        
         try:
-            test = 0
+            data.append(get_pullrates(args))
+            upload_image_data(args[0])
         except Exception as e:
             print(f"Error: {e}")
     results_dict= {}

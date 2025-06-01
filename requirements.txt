@@ -1,0 +1,4 @@
+selenium
+firebase-admin
+python-dotenv
+pokemontcgsdk
