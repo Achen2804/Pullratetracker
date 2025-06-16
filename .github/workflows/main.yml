@@ -20,7 +20,7 @@ jobs:
 
     - name: Set up Firebase credentials
       run: |
-        printf '%s' "${{ secrets.FIREBASE_KEY }}" > secrets/firebase-key.json
+        echo "${{ secrets.FIREBASE_KEY }}" > secrets/firebase-key.json
         echo "POKEMON_API_KEY = ${{ secrets.POKEMON_API_KEY }}" >> $GITHUB_ENV
         echo "FIREBASE_KEY_PATH=secrets/firebase-key.json" >> $GITHUB_ENV
     - name: Install dependencies
