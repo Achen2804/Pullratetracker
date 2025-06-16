@@ -171,7 +171,7 @@ if __name__ == "__main__":
     RestClient.configure(API_KEY)
     key_path = os.getenv("FIREBASE_KEY_PATH")
     
-
+    print(f"Using Firebase key path: {key_path}")
 
     cred = credentials.Certificate(key_path)
     firebase_admin.initialize_app(cred, {
