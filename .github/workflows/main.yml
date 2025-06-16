@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - testing
 
 jobs:
   run-firebase-script:
@@ -19,13 +20,18 @@ jobs:
 
     - name: Set up Firebase credentials
       run: |
-        echo "${{ secrets.FIREBASE_KEY }}" > secrets/firebase-key.json
+        echo '${{ secrets.FIREBASE_KEY }}' > secrets/firebase-key.json
         echo "POKEMON_API_KEY = ${{ secrets.POKEMON_API_KEY }}" >> $GITHUB_ENV
         echo "FIREBASE_KEY_PATH=secrets/firebase-key.json" >> $GITHUB_ENV
+    - name: Validate JSON file
+      run: jq . secrets/firebase-key.json
+
     - name: Install dependencies
       run: |
         pip install -r Render_flask/requirements.txt
         pip install -r requirements.txt
+    - name: Show Firebase key contents
+      run: cat secrets/firebase-key.json
     - name: Run Firebase script
       run: |
         python3 TCGscraper.py
