@@ -1,6 +1,7 @@
 name: Run Firebase Script
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
