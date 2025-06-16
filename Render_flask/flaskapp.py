@@ -10,16 +10,19 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import json
 load_dotenv()
 API_KEY = os.getenv("POKEMON_API_KEY")
 RestClient.configure(API_KEY)
 load_dotenv()
 
-key_path = os.getenv("FIREBASE_KEY_PATH")
+firebase_key = os.getenv("FIREBASE_KEY_PATH")
 
+if firebase_key and os.path.exists(firebase_key):
+    cred = credentials.Certificate(firebase_key)
+else:
+    cred = credentials.Certificate(json.loads(firebase_key))
 
-
-cred = credentials.Certificate(key_path)
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
 })
