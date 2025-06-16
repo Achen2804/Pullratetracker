@@ -12,7 +12,17 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+    - name: Create secrets directory
+      run: |
+        mkdir -p secrets
 
+    - name: Set up Firebase credentials
+      run: |
+        echo '${{ secrets.FIREBASE_KEY }}' > secrets/firebase-key.json
+        echo "POKEMON_API_KEY = ${{ secrets.POKEMON_API_KEY }}" >> $GITHUB_ENV
+        echo "FIREBASE_KEY_PATH=secrets/firebase-key.json" >> $GITHUB_ENV
+    - name: Validate JSON file
+      run: jq . secrets/firebase-key.json
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
