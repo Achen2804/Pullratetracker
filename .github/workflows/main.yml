@@ -24,3 +24,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r Render_flask/requirements.txt
+    - name: Run Firebase script
+      run: |
+        python3 TCGscraper.py
