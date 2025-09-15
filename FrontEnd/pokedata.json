@@ -807,5 +807,81 @@
             "Subrarities": [],
             "SpecificRarity": "Specific Hyper Rare Card 0.11% \u00b1 0.07% 1 in 894 Packs"
         }
+    ],
+    "White Flare": [
+        {
+            "Rarity": "Pok\u00e9 Ball Foil",
+            "Chances": "30.56",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Pok\u00e9 Ball Foil Card 0.21% \u00b1 0.33% 1 in 488 Packs"
+        },
+        {
+            "Rarity": "Double Rare",
+            "Chances": "21.11",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Double Rare Card 1.76% \u00b1 0.96% 1 in 57 Packs"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "5.83",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Ultra Rare Card 0.36% \u00b1 0.44% 1 in 274 Packs"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "16.39",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Illustration Rare Card 0.12% \u00b1 0.25% 1 in 848 Packs"
+        },
+        {
+            "Rarity": "Master Ball Foil",
+            "Chances": "5.14",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Master Ball Foil Card 0.04% \u00b1 0.14% 1 in 2802 Packs"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.25",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Special Illustration Rare Card 0.09% \u00b1 0.22% 1 in 1120 Packs"
+        }
+    ],
+    "Black Bolt": [
+        {
+            "Rarity": "Pok\u00e9 Ball Foil",
+            "Chances": "30.56",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Pok\u00e9 Ball Foil Card 0.21% \u00b1 0.33% 1 in 488 Packs"
+        },
+        {
+            "Rarity": "Double Rare",
+            "Chances": "21.11",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Double Rare Card 1.76% \u00b1 0.96% 1 in 57 Packs"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "5.83",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Ultra Rare Card 0.36% \u00b1 0.44% 1 in 274 Packs"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "16.39",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Illustration Rare Card 0.12% \u00b1 0.25% 1 in 848 Packs"
+        },
+        {
+            "Rarity": "Master Ball Foil",
+            "Chances": "5.14",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Master Ball Foil Card 0.04% \u00b1 0.14% 1 in 2802 Packs"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.25",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Special Illustration Rare Card 0.09% \u00b1 0.22% 1 in 1120 Packs"
+        }
     ]
 }
