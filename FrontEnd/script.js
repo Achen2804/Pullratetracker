@@ -13,13 +13,15 @@ fetch("pokedata.json")
   .then((response) => response.json())
   .then((data) => {
     const container = document.getElementById("Set-List");
-    data.sort((a, b) => a.text.localeCompare(b.text));
+    const fragment = [];
     for (const [setName, details] of Object.entries(data)) {
       const option = document.createElement("option");
       option.value = setName;
       option.textContent = setName;
-      container.appendChild(option);
+      fragment.appendChild(option);
     }
+    fragment.sort((a, b) => a.textContent.localeCompare(b.textContent));
+    container.appendChild(fragment);
     container.addEventListener("change", function () {
       getData(this.value);
     });
