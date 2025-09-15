@@ -13,6 +13,7 @@ fetch("pokedata.json")
   .then((response) => response.json())
   .then((data) => {
     const container = document.getElementById("Set-List");
+    data.sort((a, b) => a.text.localeCompare(b.text));
     for (const [setName, details] of Object.entries(data)) {
       const option = document.createElement("option");
       option.value = setName;
