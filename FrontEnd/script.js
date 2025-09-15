@@ -18,10 +18,10 @@ fetch("pokedata.json")
       const option = document.createElement("option");
       option.value = setName;
       option.textContent = setName;
-      fragment.appendChild(option);
+      fragment.push(option);
     }
     fragment.sort((a, b) => a.textContent.localeCompare(b.textContent));
-    container.appendChild(fragment);
+    container.appendChild(...fragment);
     container.addEventListener("change", function () {
       getData(this.value);
     });
