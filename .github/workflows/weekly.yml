@@ -7,11 +7,22 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+    - name: Create secrets directory
+      run: |
+        mkdir -p secrets
 
+    - name: Set up Firebase credentials
+      run: |
+        echo '${{ secrets.FIREBASE_KEY }}' > secrets/firebase-key.json
+        echo "POKEMON_API_KEY = ${{ secrets.POKEMON_API_KEY }}" >> $GITHUB_ENV
+        echo "FIREBASE_KEY_PATH=secrets/firebase-key.json" >> $GITHUB_ENV
+    - name: Validate JSON file
+      run: jq . secrets/firebase-key.json
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -23,4 +34,13 @@ jobs:
 
     - name: Run Python script
       run: |
+        git pull --rebase origin ${{ github.ref_name }}
         python3 TCGscraper.py
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Weekly update from GitHub Actions"
+          git push origin ${{ github.ref_name }}
+        fi

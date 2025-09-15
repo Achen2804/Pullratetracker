@@ -851,5 +851,38 @@
             "Subrarities": [],
             "SpecificRarity": "Specific Special Illustration Rare Card 0.09% \u00b1 0.22% 1 in 1120 Packs"
         }
+    ],
+    "Destined Rivals": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "19.83",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Double Rare Card 1.17% \u00b1 0.23% 1 in 86 Packs"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.39",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Ultra Rare Card 0.29% \u00b1 0.11% 1 in 344 Packs"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "8.29",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Illustration Rare Card 0.36% \u00b1 0.13% 1 in 278 Packs"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.06",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Special Illustration Rare Card 0.10% \u00b1 0.07% 1 in 1033 Packs"
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "0.67",
+            "Subrarities": [],
+            "SpecificRarity": "Specific Hyper Rare Card 0.11% \u00b1 0.07% 1 in 894 Packs"
+        }
     ]
+
 }
