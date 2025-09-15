@@ -21,7 +21,7 @@ fetch("pokedata.json")
       fragment.push(option);
     }
     fragment.sort((a, b) => a.textContent.localeCompare(b.textContent));
-    container.appendChild(...fragment);
+    container.append(...fragment);
     container.addEventListener("change", function () {
       getData(this.value);
     });
