@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 import os
 from pokemontcgsdk import Card
 from pokemontcgsdk import RestClient
+exceptions_list = ["Black Bolt and White Flare"]
 def get_articles():
 # Headless mode (optional)
     op = Options()
@@ -185,6 +186,7 @@ if __name__ == "__main__":
         currentdata = {}
     currentSets = currentdata.keys()
     dataToParse = {key: value for key, value in dataCollected.items() if key not in currentSets}
+    dataToParse = {key: value for key, value in dataToParse.items() if key not in exceptions_list}
     dataToParse = list(dataToParse.items())
     #print(dataToParse)
     if(len(dataToParse) == 0):
