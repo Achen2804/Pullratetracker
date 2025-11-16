@@ -15,7 +15,7 @@ exceptions_list = ["Black Bolt and White Flare"]
 def get_articles():
 # Headless mode (optional)
     op = Options()
-    op.add_argument('--headless')  # Run in headless mode
+    #op.add_argument('--headless')  # Run in headless mode
     op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
     driver = webdriver.Chrome(options=op)
     url = "https://www.tcgplayer.com/search/articles?q=pull+rates&productLineName=pokemon&page=1"
@@ -57,7 +57,7 @@ def get_pullrates(args):
         driver.quit()
         return (setName, [])
     
-    content_container = driver.find_element(By.XPATH, "//table[.//th[contains(text(), 'Rarity') or contains(text(), 'Card Type') or contains(text(), 'Subrarity')]]")
+    content_container = driver.find_element(By.XPATH, "(.//th[starts-with(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pull rate')])")
     table_body = content_container.find_element(By.TAG_NAME,"tbody")
     
     data = []
