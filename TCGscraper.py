@@ -12,17 +12,23 @@ import os
 from pokemontcgsdk import Card
 from pokemontcgsdk import RestClient
 exceptions_list = ["Black Bolt and White Flare"]
-def get_articles():
-# Headless mode (optional)
+def get_driver():
     op = Options()
-    op.add_argument('--headless')  # Run in headless mode
-    op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
-    driver = webdriver.Chrome(options=op)
+    op.add_argument("--headless=new")
+    op.add_argument("--disable-gpu")
+    op.add_argument("--disable-dev-shm-usage")
+    op.add_argument("--no-sandbox")
+    op.add_argument("--window-size=1920,1080")
+    op.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
+    )
+    return webdriver.Chrome(options=op)
+def get_articles():
+    driver = get_driver()
     url = "https://www.tcgplayer.com/search/articles?q=pull+rates&productLineName=pokemon&page=1"
     driver.implicitly_wait(10)
 
     driver.get(url)
-
     content_container = driver.find_element(By.CLASS_NAME, "search-results")
 
     relevant_articles = content_container.find_elements(By.XPATH, "//div[@class='grid']//a[@class='martech-base-link'][.//text()[contains(., 'Pokémon TCG')] and .//text()[contains(., 'Pull Rates')]]")
@@ -42,11 +48,8 @@ def get_articles():
 
 def get_pullrates(args):
     setName, source = args
-    op = Options()
     print(setName)
-    op.add_argument('--headless')  # Run in headless mode
-    op.add_argument('--disable-gpu')  
-    driver = webdriver.Chrome(options=op)
+    driver = get_driver()
     driver.implicitly_wait(5)
     driver.get(source)
     try:
