@@ -15,7 +15,7 @@ exceptions_list = ["Black Bolt and White Flare"]
 def get_articles():
 # Headless mode (optional)
     op = Options()
-    #op.add_argument('--headless')  # Run in headless mode
+    op.add_argument('--headless')  # Run in headless mode
     op.add_argument('--disable-gpu')  # Disable GPU acceleration (optional)
     driver = webdriver.Chrome(options=op)
     url = "https://www.tcgplayer.com/search/articles?q=pull+rates&productLineName=pokemon&page=1"
