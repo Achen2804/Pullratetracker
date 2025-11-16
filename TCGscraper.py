@@ -60,7 +60,7 @@ def get_pullrates(args):
         driver.quit()
         return (setName, [])
     
-    content_container = driver.find_element(By.XPATH, "(.//th[starts-with(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pull rate')])")
+    content_container = driver.find_element(By.XPATH,"//table[.//th[starts-with(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pull rate')]]")
     table_body = content_container.find_element(By.TAG_NAME,"tbody")
     
     data = []
