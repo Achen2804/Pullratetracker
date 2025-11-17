@@ -883,6 +883,75 @@
             "Subrarities": [],
             "SpecificRarity": "Specific Hyper Rare Card 0.11% \u00b1 0.07% 1 in 894 Packs"
         }
+    ],
+    "Phantasmal Flames": [
+        "Phantasmal Flames",
+        [
+            {
+                "Rarity": "Double Rare",
+                "Chances": "20.77",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Double Rare Card 2.08% \u00b1 0.39% 1 in 48 Packs"
+            },
+            {
+                "Rarity": "Ultra Rare",
+                "Chances": "8.06",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Ultra Rare Card 0.47% \u00b1 0.19% 1 in 211 Packs"
+            },
+            {
+                "Rarity": "Illustration Rare",
+                "Chances": "10.97",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Illustration Rare Card 0.84% \u00b1 0.25% 1 in 118 Packs"
+            },
+            {
+                "Rarity": "Special Illustration Rare",
+                "Chances": "1.25",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Special Illustration Rare Card 0.25% \u00b1 0.14% 1 in 400 Packs"
+            },
+            {
+                "Rarity": "Mega Hyper Rare",
+                "Chances": "0.08",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Mega Hyper Rare Card 0.08% \u00b1 0.08% 1 in 1260 Packs"
+            }
+        ]
+    ],
+    "Mega Evolution": [
+        "Mega Evolution",
+        [
+            {
+                "Rarity": "Double Rare",
+                "Chances": "20.91",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Double Rare Card 2.09% \u00b1 0.40% 1 in 48 Packs"
+            },
+            {
+                "Rarity": "Ultra Rare",
+                "Chances": "8.23",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Ultra Rare Card 0.37% \u00b1 0.17% 1 in 267 Packs"
+            },
+            {
+                "Rarity": "Illustration Rare",
+                "Chances": "10.89",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Illustration Rare Card 0.50% \u00b1 0.19% 1 in 202 Packs"
+            },
+            {
+                "Rarity": "Special Illustration Rare",
+                "Chances": "0.99",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Special Illustration Rare Card 0.10% \u00b1 0.09% 1 in 1008 Packs"
+            },
+            {
+                "Rarity": "Mega Hyper Rare",
+                "Chances": "0.08",
+                "Subrarities": [],
+                "SpecificRarity": "Specific Mega Hyper Rare Card 0.04% \u00b1 0.05% 1 in 2520 Packs"
+            }
+        ]
     ]
-
 }
