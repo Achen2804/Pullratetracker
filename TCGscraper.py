@@ -211,7 +211,7 @@ if __name__ == "__main__":
             print(f"Warning: failed to upload images for {setName}: {e}")
         #This is done because they are seperate processes with different failure points
         if setData:
-            data.append((setName, setData))
+            data.append(setData)
     results_dict = {set_name: numbers for set_name, numbers in data}
     currentdata.update(results_dict)
     with open("./FrontEnd/pokedata.json", "w+") as json_file:
