@@ -197,15 +197,22 @@ if __name__ == "__main__":
     data = []
     for args in dataToParse:
         
+        setName = args[0]
+        setData = None
+        # Try to get pull rates
         try:
-            data.append(get_pullrates(args))
-            upload_image_data(args[0])
+            setData = get_pullrates(args)
         except Exception as e:
-            print(f"Error: {e}")
-    results_dict= {}
-    print(data)
-    for set,numbers in data:
-        results_dict[set] = numbers
+            print(f"Error getting pull rates for {setName}: {e}")
+        # Try to upload images
+        try:
+            upload_image_data(setName)
+        except Exception as e:
+            print(f"Warning: failed to upload images for {setName}: {e}")
+        #This is done because they are seperate processes with different failure points
+        if setData:
+            data.append((setName, setData))
+    results_dict = {set_name: numbers for set_name, numbers in data}
     currentdata.update(results_dict)
     with open("./FrontEnd/pokedata.json", "w+") as json_file:
         json.dump(currentdata, json_file, indent=4)
