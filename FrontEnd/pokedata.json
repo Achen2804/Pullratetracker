@@ -851,5 +851,69 @@
             "Subrarities": [],
             "SpecificRarity": "0.0009"
         }
+    ],
+    "Phantasmal Flames": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.77",
+            "Subrarities": [],
+            "SpecificRarity": "0.0208"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.06",
+            "Subrarities": [],
+            "SpecificRarity": "0.0047"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "10.97",
+            "Subrarities": [],
+            "SpecificRarity": "0.0084"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.25",
+            "Subrarities": [],
+            "SpecificRarity": "0.0025"
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.08",
+            "Subrarities": [],
+            "SpecificRarity": "0.08"
+        }
+    ],
+    "Mega Evolution": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.91",
+            "Subrarities": [],
+            "SpecificRarity": "0.0209"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.23",
+            "Subrarities": [],
+            "SpecificRarity": "0.0037"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "10.89",
+            "Subrarities": [],
+            "SpecificRarity": "0.0050"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "0.99",
+            "Subrarities": [],
+            "SpecificRarity": "0.0010"
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.08",
+            "Subrarities": [],
+            "SpecificRarity": "0.0004"
+        }
     ]
 }
