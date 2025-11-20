@@ -108,8 +108,12 @@ def get_pullrates(args):
                 rows = current_element.find_elements(By.TAG_NAME, "tr")
                 for row in rows:
                     rowText = row.text
+                    m = re.search(r'(\d+)\s*in\s*(\d+)', rowText, re.IGNORECASE)
+                    if not m:
+                        continue
+                    row_rarity_data = int(m.group(1)) / int(m.group(2))
                     if 'Specific' in rowText:
-                        Entries[rarityText] = (rowText)
+                        Entries[rarityText] = (row_rarity_data)
     print(Entries)
     rows = table_body.find_elements(By.TAG_NAME, "tr")
     for row in rows:
