@@ -781,37 +781,37 @@
             "Rarity": "Pok\u00e9 Ball Foil",
             "Chances": "30.56",
             "Subrarities": [],
-            "SpecificRarity": "Specific Pok\u00e9 Ball Foil Card 0.21% \u00b1 0.33% 1 in 488 Packs"
+            "SpecificRarity": "0.0021"
         },
         {
             "Rarity": "Double Rare",
             "Chances": "21.11",
             "Subrarities": [],
-            "SpecificRarity": "Specific Double Rare Card 1.76% \u00b1 0.96% 1 in 57 Packs"
+            "SpecificRarity": "0.0176"
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "5.83",
             "Subrarities": [],
-            "SpecificRarity": "Specific Ultra Rare Card 0.36% \u00b1 0.44% 1 in 274 Packs"
+            "SpecificRarity": "0.0036"
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "16.39",
             "Subrarities": [],
-            "SpecificRarity": "Specific Illustration Rare Card 0.12% \u00b1 0.25% 1 in 848 Packs"
+            "SpecificRarity": "0.0012"
         },
         {
             "Rarity": "Master Ball Foil",
             "Chances": "5.14",
             "Subrarities": [],
-            "SpecificRarity": "Specific Master Ball Foil Card 0.04% \u00b1 0.14% 1 in 2802 Packs"
+            "SpecificRarity": "0.0004"
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.25",
             "Subrarities": [],
-            "SpecificRarity": "Specific Special Illustration Rare Card 0.09% \u00b1 0.22% 1 in 1120 Packs"
+            "SpecificRarity": "0.0009"
         }
     ],
     "Black Bolt": [
@@ -819,69 +819,101 @@
             "Rarity": "Pok\u00e9 Ball Foil",
             "Chances": "30.56",
             "Subrarities": [],
-            "SpecificRarity": "Specific Pok\u00e9 Ball Foil Card 0.21% \u00b1 0.33% 1 in 488 Packs"
+            "SpecificRarity": "0.0021"
         },
         {
             "Rarity": "Double Rare",
             "Chances": "21.11",
             "Subrarities": [],
-            "SpecificRarity": "Specific Double Rare Card 1.76% \u00b1 0.96% 1 in 57 Packs"
+            "SpecificRarity": "0.0176"
         },
         {
             "Rarity": "Ultra Rare",
             "Chances": "5.83",
             "Subrarities": [],
-            "SpecificRarity": "Specific Ultra Rare Card 0.36% \u00b1 0.44% 1 in 274 Packs"
+            "SpecificRarity": "0.0036"
         },
         {
             "Rarity": "Illustration Rare",
             "Chances": "16.39",
             "Subrarities": [],
-            "SpecificRarity": "Specific Illustration Rare Card 0.12% \u00b1 0.25% 1 in 848 Packs"
+            "SpecificRarity": "0.0012"
         },
         {
             "Rarity": "Master Ball Foil",
             "Chances": "5.14",
             "Subrarities": [],
-            "SpecificRarity": "Specific Master Ball Foil Card 0.04% \u00b1 0.14% 1 in 2802 Packs"
+            "SpecificRarity": "0.0004"
         },
         {
             "Rarity": "Special Illustration Rare",
             "Chances": "1.25",
             "Subrarities": [],
-            "SpecificRarity": "Specific Special Illustration Rare Card 0.09% \u00b1 0.22% 1 in 1120 Packs"
+            "SpecificRarity": "0.0009"
         }
     ],
-    "Destined Rivals": [
+    "Phantasmal Flames": [
         {
             "Rarity": "Double Rare",
-            "Chances": "19.83",
+            "Chances": "20.77",
             "Subrarities": [],
-            "SpecificRarity": "Specific Double Rare Card 1.17% \u00b1 0.23% 1 in 86 Packs"
+            "SpecificRarity": "0.0208"
         },
         {
             "Rarity": "Ultra Rare",
-            "Chances": "6.39",
+            "Chances": "8.06",
             "Subrarities": [],
-            "SpecificRarity": "Specific Ultra Rare Card 0.29% \u00b1 0.11% 1 in 344 Packs"
+            "SpecificRarity": "0.0047"
         },
         {
             "Rarity": "Illustration Rare",
-            "Chances": "8.29",
+            "Chances": "10.97",
             "Subrarities": [],
-            "SpecificRarity": "Specific Illustration Rare Card 0.36% \u00b1 0.13% 1 in 278 Packs"
+            "SpecificRarity": "0.0084"
         },
         {
             "Rarity": "Special Illustration Rare",
-            "Chances": "1.06",
+            "Chances": "1.25",
             "Subrarities": [],
-            "SpecificRarity": "Specific Special Illustration Rare Card 0.10% \u00b1 0.07% 1 in 1033 Packs"
+            "SpecificRarity": "0.0025"
         },
         {
-            "Rarity": "Hyper Rare",
-            "Chances": "0.67",
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.08",
             "Subrarities": [],
-            "SpecificRarity": "Specific Hyper Rare Card 0.11% \u00b1 0.07% 1 in 894 Packs"
+            "SpecificRarity": "0.08"
+        }
+    ],
+    "Mega Evolution": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.91",
+            "Subrarities": [],
+            "SpecificRarity": "0.0209"
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.23",
+            "Subrarities": [],
+            "SpecificRarity": "0.0037"
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "10.89",
+            "Subrarities": [],
+            "SpecificRarity": "0.0050"
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "0.99",
+            "Subrarities": [],
+            "SpecificRarity": "0.0010"
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.08",
+            "Subrarities": [],
+            "SpecificRarity": "0.0004"
         }
     ]
 }
