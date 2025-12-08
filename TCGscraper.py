@@ -9,9 +9,10 @@ from firebase_admin import credentials
 from firebase_admin import db
 from dotenv import load_dotenv
 import os
-from pokemontcgsdk import Card
-from pokemontcgsdk import RestClient
+from tcgdexsdk import TCGdex, Query
+
 exceptions_list = ["Black Bolt and White Flare"]
+
 def get_driver():
     op = Options()
     op.add_argument("--headless=new")
@@ -148,19 +149,19 @@ def get_pullrates(args):
     return (setName,data) 
 
 def upload_image_data(setName):
-
+    api = TCGdex("en")
+    cards = api.card.listSync(Query().equal("set", setName))
     setTable = db.reference('Sets2')
-    relevantSet = setTable.child(setName)
-    cards = Card.where(q=f'set.name:"{setName}"')
     updates = {}
     
     # Loop through cards and prepare the updates
     for card in cards:
+        card = api.card.getSync(card.id)
         if card.rarity is not None:
             # Update the relevant set with card data
             if card.rarity not in updates:
                 updates[card.rarity] = []
-            updates[card.rarity].append(card.images.large)
+            updates[card.rarity].append(card.image)
     
     # Perform the update in one go
     if updates:
@@ -172,7 +173,6 @@ if __name__ == "__main__":
     processes = []
     load_dotenv()
     API_KEY = os.getenv("POKEMON_API_KEY")
-    RestClient.configure(API_KEY)
     key_path = os.getenv("FIREBASE_KEY_PATH")
     
     print(f"Using Firebase key path: {key_path}")
