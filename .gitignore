@@ -2,3 +2,4 @@
 secrets/
 tester.py
 QueryTester.py
+/ignore/*
