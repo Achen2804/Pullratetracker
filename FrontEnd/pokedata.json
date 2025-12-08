@@ -915,5 +915,37 @@
             "Subrarities": [],
             "SpecificRarity": "0.0004"
         }
+    ],
+    "Destined Rivals": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "19.83",
+            "Subrarities": [],
+            "SpecificRarity": 0.011627906976744186
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "6.39",
+            "Subrarities": [],
+            "SpecificRarity": 0.0029069767441860465
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "8.29",
+            "Subrarities": [],
+            "SpecificRarity": 0.0035971223021582736
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.06",
+            "Subrarities": [],
+            "SpecificRarity": 0.000968054211035818
+        },
+        {
+            "Rarity": "Hyper Rare",
+            "Chances": "0.67",
+            "Subrarities": [],
+            "SpecificRarity": 0.0011185682326621924
+        }
     ]
 }
