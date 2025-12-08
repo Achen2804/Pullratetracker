@@ -164,8 +164,8 @@ def upload_image_data(setName):
         if card.rarity is not None:
             # Update the relevant set with card data
             if card.rarity not in updates:
-                updates[card.rarity] = []
-            updates[card.rarity].append(card.image)
+                updates[card.rarity.title()] = []
+            updates[card.rarity.title()].append(card.image)
     
     # Perform the update in one go
     if updates:
