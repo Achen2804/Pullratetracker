@@ -2,4 +2,4 @@ selenium
 firebase-admin
 python-dotenv
 pokemontcgsdk
-https://github.com/tcgdex/python-sdk.git
+git+https://github.com/tcgdex/python-sdk.git
