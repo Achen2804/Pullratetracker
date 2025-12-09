@@ -165,7 +165,7 @@ def upload_image_data(setName):
             # Update the relevant set with card data
             if card.rarity not in updates:
                 updates[card.rarity.title()] = []
-            updates[card.rarity.title()].append(card.image)
+            updates[card.rarity.title()].append(card.image+"/high.png")
     
     # Perform the update in one go
     if updates:
@@ -178,9 +178,6 @@ if __name__ == "__main__":
     load_dotenv()
     API_KEY = os.getenv("POKEMON_API_KEY")
     key_path = os.getenv("FIREBASE_KEY_PATH")
-    
-    print(f"Using Firebase key path: {key_path}")
-
     cred = credentials.Certificate(key_path)
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
