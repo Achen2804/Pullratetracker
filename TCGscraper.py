@@ -161,11 +161,11 @@ def upload_image_data(setName):
     # Loop through cards and prepare the updates
     for card in cards:
         card = api.card.getSync(card.id)
-        if card.rarity is not None:
-            # Update the relevant set with card data
-            if card.rarity not in updates:
-                updates[card.rarity.title()] = []
-            updates[card.rarity.title()].append(card.image+"/high.png")
+        clean_rarity = card.rarity.strip().title().replace(".", "_").replace(" ", "_")
+        
+            if clean_rarity not in updates:
+                updates[clean_rarity] = []
+            updates[clean_rarity].append(f"https://assets.tcgdex.net{card.localId}/high.png")
     
     # Perform the update in one go
     if updates:
