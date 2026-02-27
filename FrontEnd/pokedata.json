@@ -947,5 +947,43 @@
             "Subrarities": [],
             "SpecificRarity": 0.0011185682326621924
         }
+    ],
+    "Ascended Heroes": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.37",
+            "Subrarities": [],
+            "SpecificRarity": 0.005235602094240838
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "4.81",
+            "Subrarities": [],
+            "SpecificRarity": 0.003436426116838488
+        },
+        {
+            "Rarity": "Mega Attack Rare",
+            "Chances": "3.47",
+            "Subrarities": [],
+            "SpecificRarity": 0.0049504950495049506
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "11.25",
+            "Subrarities": [],
+            "SpecificRarity": 0.0034129692832764505
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.44",
+            "Subrarities": [],
+            "SpecificRarity": 0.0006523157208088715
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.19",
+            "Subrarities": [],
+            "SpecificRarity": 0.000925925925925926
+        }
     ]
 }
