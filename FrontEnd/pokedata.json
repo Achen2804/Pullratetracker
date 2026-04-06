@@ -985,5 +985,37 @@
             "Subrarities": [],
             "SpecificRarity": 0.000925925925925926
         }
+    ],
+    "Perfect Order": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.97",
+            "Subrarities": [],
+            "SpecificRarity": 0.023255813953488372
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.54",
+            "Subrarities": [],
+            "SpecificRarity": 0.004739336492890996
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "11.20",
+            "Subrarities": [],
+            "SpecificRarity": 0.01020408163265306
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.23",
+            "Subrarities": [],
+            "SpecificRarity": 0.002053388090349076
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.06",
+            "Subrarities": [],
+            "SpecificRarity": 0.0005599104143337066
+        }
     ]
 }
