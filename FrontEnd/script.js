@@ -1,5 +1,5 @@
 fetch(
-  "https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api",
+  "/api/api",
   { method: "HEAD" },
 )
   .then((response) => {
@@ -46,7 +46,7 @@ async function getRarityGallery(set_name, rarity) {
   let data;
   data = loadFromSessionCache(set_name, rarity);
   if (data == null) {
-    const API = `https://pullratetracker-git-main-andrew-chens-projects-5158726a.vercel.app/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
+    const API = `/api/api?endpoint=getset&set_name=${encodeURIComponent(set_name)}&rarity=${encodeURIComponent(rarity)}`;
     console.log(API);
     response = await fetch(API, { method: "GET" });
     data = await response.json();
