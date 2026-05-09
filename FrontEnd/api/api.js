@@ -1,4 +1,15 @@
 module.exports = async (req, res) => {
+    // Set CORS headers for all requests
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
+    // Handle OPTIONS preflight requests
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
+
     const time = new Date().getDate();
     let targetUrl = ""; 
     if(time <15){
@@ -25,7 +36,6 @@ module.exports = async (req, res) => {
       headers: req.headers, 
       body: req.method === 'POST' || req.method === 'PUT' ? req.body : undefined, 
     });
-    res.setHeader('Access-Control-Allow-Origin', '*');
     if(req.method === 'GET'){
     const data = await response.json(); 
     res.status(response.status).json(data); 
