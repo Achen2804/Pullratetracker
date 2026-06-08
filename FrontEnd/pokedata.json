@@ -1017,5 +1017,37 @@
             "Subrarities": [],
             "SpecificRarity": 0.0005599104143337066
         }
+    ],
+    "Chaos Rising": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "20.30",
+            "Subrarities": [],
+            "SpecificRarity": 0.02040816326530612
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.29",
+            "Subrarities": [],
+            "SpecificRarity": 0.004608294930875576
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "10.66",
+            "Subrarities": [],
+            "SpecificRarity": 0.009708737864077669
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.21",
+            "Subrarities": [],
+            "SpecificRarity": 0.0020161290322580645
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.10",
+            "Subrarities": [],
+            "SpecificRarity": 0.0010460251046025104
+        }
     ]
 }
