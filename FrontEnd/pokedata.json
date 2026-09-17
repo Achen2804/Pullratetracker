@@ -1049,5 +1049,37 @@
             "Subrarities": [],
             "SpecificRarity": 0.0010460251046025104
         }
+    ],
+    "Pitch Black": [
+        {
+            "Rarity": "Double Rare",
+            "Chances": "21.02",
+            "Subrarities": [],
+            "SpecificRarity": 0.020833333333333332
+        },
+        {
+            "Rarity": "Ultra Rare",
+            "Chances": "8.30",
+            "Subrarities": [],
+            "SpecificRarity": 0.004608294930875576
+        },
+        {
+            "Rarity": "Illustration Rare",
+            "Chances": "11.01",
+            "Subrarities": [],
+            "SpecificRarity": 0.01
+        },
+        {
+            "Rarity": "Special Illustration Rare",
+            "Chances": "1.25",
+            "Subrarities": [],
+            "SpecificRarity": 0.0020833333333333333
+        },
+        {
+            "Rarity": "Mega Hyper Rare",
+            "Chances": "0.09",
+            "Subrarities": [],
+            "SpecificRarity": 0.0009250693802035153
+        }
     ]
 }

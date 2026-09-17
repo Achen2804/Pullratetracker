@@ -1,4 +1,5 @@
 import re
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -175,6 +176,37 @@ def upload_image_data(setName):
     return
 
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "--pullrates":
+        result = get_pullrates(("Manual scrape", sys.argv[2]))
+        print(json.dumps(result, indent=4))
+        sys.exit(0)
+
+    if len(sys.argv) == 4 and sys.argv[1] == "--add-set":
+        set_name = sys.argv[2]
+        source = sys.argv[3]
+        load_dotenv()
+        key_path = os.getenv("FIREBASE_KEY_PATH")
+        cred = credentials.Certificate(key_path)
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://pullratetracker-default-rtdb.firebaseio.com'
+        })
+
+        set_name, set_data = get_pullrates((set_name, source))
+        try:
+            upload_image_data(set_name)
+        except Exception as e:
+            print(f"Warning: failed to upload images for {set_name}: {e}")
+        try:
+            with open('./FrontEnd/pokedata.json', 'r') as file:
+                currentdata = json.load(file)
+        except FileNotFoundError:
+            currentdata = {}
+        currentdata[set_name] = set_data
+        with open('./FrontEnd/pokedata.json', 'w') as json_file:
+            json.dump(currentdata, json_file, indent=4)
+        print(f"Added {set_name} to FrontEnd/pokedata.json")
+        sys.exit(0)
+
     dataCollected = get_articles()
     processes = []
     load_dotenv()
